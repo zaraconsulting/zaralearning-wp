@@ -1,0 +1,222 @@
+<?php get_header( ); 
+
+    $relatedInstructor = get_field( 'related_instructors' )[0];
+    $courseVideo = get_field( 'course_video' );
+
+?>
+
+<!-- Start Breadcrumb 
+============================================= -->
+<div class="breadcrumb-area bg-gray text-center shadow dark text-light bg-cover" style="background-image: url(<?php echo get_theme_file_uri( '/assets/img/banners/course-detail.jpg' ); ?>);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Course Details</h1>
+                <ul class="breadcrumb">
+                    <li><a href="<?php echo site_url( ); ?>"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="<?php echo site_url( '/courses' ); ?>"> Courses</a></li>
+                    <li class="active"><?php the_title(); ?></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb -->
+
+<!-- Start Course Details 
+============================================= -->
+<div class="course-details-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 info">
+
+                <div class="top-info">
+                    <h2><?php the_title(); ?></h2>
+                    <ul>
+                        <li>
+                            <div class="thumb">
+                                <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name; ?>">
+                            </div>
+                            <div class="info">
+                                <span>Instructor</span>
+                                <h5><?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name[0]; ?></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <span>Category</span>
+                                <h5><?php echo get_field( 'related_categories' )[0]->post_title; ?></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <span>Uploaded On</span>
+                                <?php
+                                    $uploadDate = new DateTime( get_field( 'upload_date' ) );
+                                ?>
+                                <h5><?php echo $uploadDate->format( 'F j, Y' ); ?></h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="main-content">
+                    <div class="center-tabs">
+                        <ul id="tabs" class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a href="" data-target="#tab1" data-toggle="tab" class="active nav-link">Overview</a>
+                            </li>
+                        </ul>
+                        <div id="tabsContent" class="tab-content">
+                            <div id="tab1" class="tab-pane overview fade active show">
+                                <?php 
+                                    if( the_content() )
+                                    { ?>
+                                        <h4>Course Description</h4>
+                                        <?php the_content(); ?>
+                                    <? }
+                                ?>
+                                <?php
+                                    $learning_objectives = get_field( 'learning_objectives' );
+
+                                    if( $learning_objectives )
+                                    { ?>
+                                        <h4>Learning Objectives</h4>
+                                        <ul>
+                                            <?php 
+                                            
+                                                foreach( $learning_objectives as $o )
+                                                { ?>
+                                                    <li><?php echo $o->post_title; ?></li>
+                                                <?php }
+                                            
+                                            ?>
+                                        </ul>
+                                    <?php }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4 sidebar">
+                <!-- Single Item -->
+                <div class="item course-preview">
+                    <div class="thumb">
+                        <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
+                        <a href="<?php echo $courseVideo['url']; ?>" class="popup-youtube light video-play-button item-center">
+                            <i class="fa fa-play"></i>
+                        </a>
+                    </div>
+                    <div class="content">
+                        <div class="course-includes">
+                            <ul>
+                                <li>
+                                    <i class="fas fa-clock"></i> Duration <span class="float-right"><?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?>m</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-sliders-h"></i> Skill level <span class="float-right"><?php echo get_field( 'skill_level' ); ?></span>
+                                </li>
+                                <!-- <li>
+                                    <i class="fas fa-users"></i> Students <span class="float-right">12K</span>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <a class="btn btn-theme effect btn-sm" href="#">Enroll Now</a>
+                    </div>
+                </div>
+                <!-- Single Item -->
+
+                <!-- Single Item -->
+                <div class="item course-category">
+                    <div class="content">
+                        <h4>Related categories</h4>
+                        <ul>
+                            <?php
+
+                                $relatedCategories = get_field( 'related_categories' );
+                                
+                                $relatedCategoriesList = array();
+                                foreach( $relatedCategories as $c )
+                                {
+                                    if( !($c->post_title == $relatedCategories[0]->post_title) )
+                                    {
+                                        array_push( $relatedCategoriesList, $c );
+                                    }
+                                }
+                                
+                                if( $relatedCategoriesList )
+                                { 
+                                    foreach( $relatedCategoriesList as $cat )
+                                    { ?>
+                                        <li>
+                                            <a href="<?php the_permalink( $cat->ID ); ?>"><?php echo $cat->post_title; ?> <!--<span>23</span>!--></a>
+                                        </li>
+                                    <?php }
+                                }
+                                else
+                                { ?>
+                                    <p>No related categories</p> 
+                                <? }
+
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Single Item -->
+
+                <!-- Single Item -->
+                <div class="item related-course">
+                    <div class="content">
+                        <h4>Related Courses</h4>
+                        <div class="related-courses-items">
+                            <?php 
+                                $relatedCourses = get_field( 'related_courses' );
+                                if( $relatedCourses )
+                                {
+                                    foreach( $relatedCourses as $course )
+                                    { ?>
+                                        <div class="item">
+                                            <div class="content">
+                                                <div class="thumb">
+                                                    <a href="<?php echo get_the_permalink( $course ); ?>">
+                                                        <img src="<?php echo get_the_post_thumbnail_url( $course, 'relatedCourseVideoLandscape' ); ?>" alt="<?php echo get_the_title( $course ); ?>">
+                                                    </a>
+                                                </div>
+                                                <div class="info">
+                                                    <h5>
+                                                        <a href="<?php echo get_the_permalink( $course ); ?>"><?php echo mb_strimwidth( get_the_title( $course ), 0, 35, '...' ); ?></a>
+                                                    </h5>
+                                                    <!-- <div class="rating">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
+                                                        <span>4.5 (1.3k)</span>
+                                                    </div> -->
+                                                    <div class="meta">
+                                                        <?php $instructor = get_field( 'related_instructors' )[0]; ?>
+                                                        <i class="fas fa-user"></i> By <?php echo $instructor->first_name; ?> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php }
+                                }
+                                else { ?>
+                                    <p>No related courses</p>
+                                <?php }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Item -->
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Course Details -->
+<?php get_footer( ); ?>
