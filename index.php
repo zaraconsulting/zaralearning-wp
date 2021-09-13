@@ -9,6 +9,11 @@
                     <h1>Courses</h1>
                     <ul class="breadcrumb">
                         <li><a href="<?php echo site_url( ); ?>"><i class="fas fa-home"></i> Home</a></li>
+                        <?php
+
+                            print_r( get_page_template() )
+
+                        ?>
                         <li class="active"><?php the_title(); ?></li>
                     </ul>
                 </div>

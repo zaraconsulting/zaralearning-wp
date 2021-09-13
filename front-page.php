@@ -1,21 +1,4 @@
-<?php get_header(); 
-
-    $categories = new WP_Query( array(
-        'post_type' => 'category'
-    ) );
-    
-    // print_r( the_post() );
-    $categoryList = array();
-    while( $categories->have_posts() )
-    {
-        $categories->the_post();
-
-        $categoryList[get_the_title()] = get_the_permalink();
-    }
-
-    wp_reset_postdata();
-
-?>
+<?php get_header(); ?>
 
     <!-- Start Banner 
     ============================================= -->
@@ -55,24 +38,32 @@
             <div class="category-items thumb-categories-carousel owl-carousel owl-theme">
                 <?php
 
-                    $categories = new WP_Query( array(
-                        'post_type' => 'category'
+                    // $categories = new WP_Query( array(
+                    //     'post_type' => 'category'
+                    // ) );
+
+                    $categories = get_terms( array(
+                        'taxonomy' => 'course_categories',
+                        'hide_empty' => false
                     ) );
 
-                    while( $categories->have_posts() )
-                    {
+                    foreach( $categories as $category )
+                    { 
                         
-                        $categories->the_post(); ?>
+                        $image = get_field( 'taxonomy_featured_image', $category );
+
+                        ?>
 
                         <!-- Single Item -->
                         <div class="item">
                             <div class="title">
                                 <!-- <i class="flaticon-innovation"></i> -->
-                                <h4><a href="<?php the_permalink(  ); ?>"><?php the_title(); ?></a></h4>
+                                <h4><a href="<?php echo get_term_link( $category, 'course_categories' ); ?>"><?php echo $category->name; ?></a></h4>
                             </div>
                             <div class="thumb">
                                 <!-- <span>58 Courses</span> -->
-                                <?php the_post_thumbnail( 'courseCategoryLandscape' ); ?>
+                                <img src="<?php echo $image['url']; ?>" alt="<?php echo $category->name; ?>">
+                                <?php echo $category->taxonomy_featured_image; ?>
                             </div>
                         </div>
                         <!-- End Single Item -->                        
@@ -120,7 +111,7 @@
 
                         $courses = new WP_Query( array(
                             'post_type' => 'course',
-                            'posts_per_page' => 6,
+                            'posts_per_page' => 9,
                         ) );
 
                         while( $courses->have_posts() )
@@ -128,6 +119,7 @@
                             $courses->the_post();
                             $courseVideo = get_field( 'course_video' );
                             $instructor = get_field( 'related_instructors' )[0];
+                            $course_category = get_the_terms( $post, 'course_categories' )[0];
                             
                             ?>
 
@@ -159,11 +151,11 @@
                                             <div class="author">
                                                 <?php
 
-                                                    $cat = get_field( 'related_categories' )[0];
+                                                    // $cat = get_field( 'related_categories' )[0];
 
                                                 ?>
                                                 <img src="<?php echo get_the_post_thumbnail_url( $instructor->ID ); ?>" alt="<?php echo $instructor->first_name; ?>">
-                                                <span><strong><?php echo $instructor->first_name; ?></strong> in <a href="<?php echo $categoryList[$cat->post_title]; ?>"><?php echo mb_strimwidth( $cat->post_title, 0, 20, '...' ); ?></a></span>
+                                                <span><strong><?php echo $instructor->first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category, 'course_categories' ); ?>"><?php echo mb_strimwidth( $course_category->name, 0, 15, '...' ); ?></a></span>
                                             </div>
                                         </div>
                                         <!-- <div class="bottom-info">

@@ -6,3 +6,45 @@
 .course-area .info .top-info {
     margin-bottom: 0px;
 }
+
+#loginform .wp-core-ui .button, .wp-core-ui .button-secondary {
+    /* border-color: #FF1949; */
+    color: #FF1949;
+}
+
+#loginform #wp-submit.button.button-primary {
+    background: #FF1949;
+    border-color: #FF1949;
+    color: #fff;
+}
+
+#loginform input.input[type=text]:focus, #loginform input[type=password]:focus, #loginform input[type=checkbox]:focus, #loginform .login .button.wp-hide-pw:focus {
+    border-color: #FF1949;
+    box-shadow: 0 0 0 1px #FF1949;
+}
+
+.login #nav a:hover, .login #backtoblog a:hover, .privacy-policy-page-link>.privacy-policy-link {
+    color: #FF1949;
+}
+
+.privacy-policy-page-link>.privacy-policy-link:hover {
+    color: #ca1239
+}
+
+#loginform input[type=checkbox]:focus, #loginform input[type=checkbox]:checked::before {
+    color: #FF1949;
+}
+
+.login .wp-core-ui #login {
+    margin-top: 50px;
+}
+
+.watch-button {
+    padding: 10px 35px !important;
+    font-size: 12px !important;
+    font-weight: 800;
+}
+
+.course-info {
+    /* color: #666666; */
+}

@@ -66,6 +66,9 @@
                             <li class="nav-item">
                                 <a href="" data-target="#tab1" data-toggle="tab" class="active nav-link">Overview</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="" data-target="#tab4" data-toggle="tab" class="nav-link">Reviews</a>
+                            </li>
                         </ul>
                         <div id="tabsContent" class="tab-content">
                             <div id="tab1" class="tab-pane overview fade active show">
@@ -95,6 +98,113 @@
                                     <?php }
                                 ?>
                             </div>
+                            <div id="tab4" class="tab-pane reviews fade">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="avg-ratings">
+                                            <h2>4.9</h2>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            1,455 Ratings
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 rating-counter">
+                                        <ul>
+                                            <li>
+                                                <span>5 Star</span>
+                                                <span>13</span>
+                                                <div class="rating-bar"></div>
+                                            </li>
+                                            <li>
+                                                <span>4 Star</span>
+                                                <span>1</span>
+                                                <div class="rating-bar"></div>
+                                            </li>
+                                            <li>
+                                                <span>3 Star</span>
+                                                <span>0</span>
+                                                <div class="rating-bar"></div>
+                                            </li>
+                                            <li>
+                                                <span>2 Star</span>
+                                                <span>1</span>
+                                                <div class="rating-bar"></div>
+                                            </li>
+                                            <li>
+                                                <span>1 Star</span>
+                                                <span>0</span>
+                                                <div class="rating-bar"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="rating-provider">
+                                    <?php
+
+                                        $reviews = new WP_Query( 
+                                            array( 
+                                                'post_type' => 'review',
+                                                'meta_query' => array(
+                                                    array(
+                                                        'key' => 'review_user_id',
+                                                        'compare' => 'like',
+                                                        'value' => get_the_ID(),
+                                                    )
+                                                )
+                                            )
+                                        );
+
+                                        while( $reviews->have_posts() )
+                                        {
+                                            $reviews->the_post();
+                                            ?>
+
+                                                <!-- Single Item -->
+                                                <div class="single-item">
+                                                    <div class="thumb">
+                                                        <?php echo get_avatar( get_the_author_email(), 80 ); ?>
+                                                    </div>
+                                                    <div class="info">
+                                                        <div class="title">
+                                                            <h4><?php the_author(); ?></h4>
+                                                            <span><?php the_date(); ?></span>
+                                                        </div>
+                                                        <div class="rating">
+                                                            <?php
+
+                                                                $starCount = get_field( 'review_rating' );
+                                                                foreach( range( 1, $starCount ) as $star )
+                                                                {
+                                                                    ?>
+                                                                        <i class="fas fa-star"></i>
+                                                                    <?php
+                                                                }
+
+                                                            ?>
+                                                        </div>
+                                                        <div class="content">
+                                                            <p><?php the_content(); ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Single Item -->
+
+                                            <?php
+                                        }
+
+
+                                        wp_reset_postdata(  );
+                                    ?>
+                                </div>
+
+                                <?php get_template_part( '/includes/section', 'comment-form' ); ?>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,10 +222,10 @@
                     <div class="content">
                         <div class="course-includes">
                             <ul>
-                                <li>
+                                <li class="course-info">
                                     <i class="fas fa-clock"></i> Duration <span class="float-right"><?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?>m</span>
                                 </li>
-                                <li>
+                                <li class="course-info">
                                     <i class="fas fa-sliders-h"></i> Skill level <span class="float-right"><?php echo get_field( 'skill_level' ); ?></span>
                                 </li>
                                 <!-- <li>
@@ -123,48 +233,10 @@
                                 </li> -->
                             </ul>
                         </div>
-                        <a class="btn btn-theme effect btn-sm" href="#">Enroll Now</a>
+                        <a class="btn btn-theme effect btn-sm watch-button" href="#">Enroll Now</a>
                     </div>
                 </div>
                 <!-- Single Item -->
-
-                <!-- Single Item -->
-                <div class="item course-category">
-                    <div class="content">
-                        <h4>Related categories</h4>
-                        <ul>
-                            <?php
-
-                                $relatedCategories = get_field( 'related_categories' );
-                                
-                                $relatedCategoriesList = array();
-                                foreach( $relatedCategories as $c )
-                                {
-                                    if( !($c->post_title == $relatedCategories[0]->post_title) )
-                                    {
-                                        array_push( $relatedCategoriesList, $c );
-                                    }
-                                }
-                                
-                                if( $relatedCategoriesList )
-                                { 
-                                    foreach( $relatedCategoriesList as $cat )
-                                    { ?>
-                                        <li>
-                                            <a href="<?php the_permalink( $cat->ID ); ?>"><?php echo $cat->post_title; ?> <!--<span>23</span>!--></a>
-                                        </li>
-                                    <?php }
-                                }
-                                else
-                                { ?>
-                                    <p>No related categories</p> 
-                                <? }
-
-                            ?>
-                        </ul>
-                    </div>
-                </div>
-                <!-- End Single Item -->
 
                 <!-- Single Item -->
                 <div class="item related-course">

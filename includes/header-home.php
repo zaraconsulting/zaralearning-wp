@@ -14,25 +14,7 @@
                 <a href="<?php echo site_url( ); ?>"><img src="<?php echo get_theme_file_uri( '/assets/img/logo-light.png' ); ?>" alt="Logo"></a>
             </div>
             <div class="col-lg-4 right-info">
-                <div class="item-flex">
-                    <div class="social">
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="button">
-                        <a href="#">Register</a>
-                        <a href="#"><i class="fa fa-sign-in-alt"></i>Login</a>
-                    </div>
-                </div>
+                 <?php get_template_part( '/includes/header', 'social-media' ); ?>
             </div>
         </div>
     </div>
@@ -60,20 +42,7 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li>
-                                <a href="<?php echo site_url( ); ?>">Home</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url( 'courses' ); ?>">Courses</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url( ); ?>">Instructors</a>
-                            </li>
-                            <li>
-                                <a href="contact.html">Contact</a>
-                            </li>
-                        </ul>
+                        <?php get_template_part( '/includes/header', 'navigation' ); ?>
                     </div><!-- /.navbar-collapse -->
                 </div>   
                 

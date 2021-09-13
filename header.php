@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Edukat - Education and LMS Template">
+    <meta name="description" content="Zara Learning - The Software Developer's Toolkit">
 
     <!-- ========== Page Title ========== -->
-    <title>Edukat - Education and LMS Template</title>
+    <title>Zara Learning</title>
 
     <!-- ========== Favicon Icon ========== -->
     <!-- ========== Start Stylesheet ========== -->

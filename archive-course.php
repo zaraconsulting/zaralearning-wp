@@ -28,7 +28,11 @@
 
                         while( have_posts() )
                         {
-                            the_post(); ?>
+                            the_post(); 
+                            // print_r($post->ID);
+                            $course_category = get_the_terms( $post->ID, 'course_categories' )[0];
+                            // print_r( $course_category );
+                            ?>
 
                             <!-- Single item -->
                             <div class="single-item col-lg-4 col-md-6">
@@ -48,7 +52,7 @@
                                             <ul>
                                                 <li>
                                                     <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name; ?>">
-                                                    <a href="#"><?php echo $relatedInstructor->first_name; ?></a> in <a href="<?php echo get_the_permalink( get_field( 'related_categories' )[0]->ID ); ?>"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
+                                                    <a href="#"><?php echo $relatedInstructor->first_name; ?></a> in <a href="<?php echo get_term_link( $course_category->slug, 'course_categories' ); ?>"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
                                                 </li>
                                             </ul>
                                         </div>
