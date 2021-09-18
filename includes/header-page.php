@@ -8,14 +8,14 @@
                 <div class="item-flex">
                     <ul class="list">
                         <li>
-                            <i class="fas fa-phone"></i> Have any question? +123 456 7890
+                            <i class="fas fa-phone"></i> Have any questions? +1 (469) 730-6696
                         </li>
                         <li>
                             <i class="fas fa-bullhorn"></i> <a href="#">Become an Instructor</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <i class="fas fa-briefcase"></i> <a href="#">For Enterprise</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -40,8 +40,8 @@
 
             <!-- Start Atribute Navigation -->
             <div class="attr-nav">
-                <form action="#">
-                    <input type="text" placeholder="Search" class="form-control" name="text">
+                <form method="GET" action="<?php echo esc_url( site_url( '/courses' ) ); ?>">
+                    <input type="text" placeholder="Search" class="form-control" name="s">
                     <button type="submit">
                         <i class="fa fa-search"></i>
                     </button>  

@@ -45,7 +45,18 @@
                         <li>
                             <div class="info">
                                 <span>Category</span>
-                                <h5><?php echo get_field( 'related_categories' )[0]->post_title; ?></h5>
+                                <h5>
+                                    <?php $category = get_field( 'related_categories' )[0]; ?>
+                                    <a href="/category/<?php echo $category->post_name; ?>">
+                                        <?php
+                                            // foreach( get_field( 'related_categories' ) as $cat )
+                                            // {
+                                            //     print_r( $cat );
+                                            // }
+                                        ?>
+                                        <?php echo $category->post_title; ?>
+                                    </a>
+                                </h5>
                             </div>
                         </li>
                         <li>

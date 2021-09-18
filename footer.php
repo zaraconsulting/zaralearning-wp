@@ -23,22 +23,13 @@
 
                     <div class="col-lg-2 col-md-6 item">
                         <div class="f-item link">
-                            <h4 class="widget-title">Usefull Links</h4>
+                            <h4 class="widget-title">Useful Links</h4>
                             <ul>
                                 <li>
                                     <a href="#">Courses</a>
                                 </li>
                                 <li>
-                                    <a href="#">Event</a>
-                                </li>
-                                <li>
-                                    <a href="#">Gallery</a>
-                                </li>
-                                <li>
-                                    <a href="#">Faqs</a>
-                                </li>
-                                <li>
-                                    <a href="#">Teachers</a>
+                                    <a href="#">Instructors</a>
                                 </li>
                                 <li>
                                     <a href="#">Contact</a>
@@ -51,24 +42,9 @@
                         <div class="f-item link">
                             <h4 class="widget-title">Support</h4>
                             <ul>
-                                <li>
+                                <!-- <li>
                                     <a href="#">Documentation</a>
-                                </li>
-                                <li>
-                                    <a href="#">Forums</a>
-                                </li>
-                                <li>
-                                    <a href="#">Language Packs</a>
-                                </li>
-                                <li>
-                                    <a href="#">Release Status</a>
-                                </li>
-                                <li>
-                                    <a href="#">LearnPress</a>
-                                </li>
-                                <li>
-                                    <a href="#">Feedback</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -79,23 +55,20 @@
                             <div class="address">
                                 <ul>
                                     <li>
-                                        <strong>Email:</strong> support@validtheme.com
+                                        <strong>Email:</strong> <?php echo get_the_author_email(  ); ?>
                                     </li>
                                     <li>
-                                        <strong>Contact:</strong> +44-20-7328-4499
+                                        <strong>Contact:</strong> +1 (469) 730-6696
                                     </li>
                                 </ul>
                             </div>
                             <div class="opening-info">
-                                <h5>Opening Hours</h5>
+                                <h5>Hours</h5>
                                 <ul>
-                                    <li> <span> Mon - Tues :  </span>
-                                      <div class="float-right"> 6.00 am - 10.00 pm </div>
+                                    <li> <span> Mon - Fri :  </span>
+                                      <div class="float-right"> 9:00am - 4:00pm CST </div>
                                     </li>
-                                    <li> <span> Wednes - Thurs :</span>
-                                      <div class="float-right"> 8.00 am - 6.00 pm </div>
-                                    </li>
-                                    <li> <span> Sun : </span>
+                                    <li> <span> Sat - Sun : </span>
                                       <div class="float-right closed"> Closed </div>
                                     </li>
                                 </ul>
@@ -111,7 +84,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>&copy; Copyright 2021. All Rights Reserved by <a href="#">validthemes</a></p>
+                        <p>&copy; Copyright 2021. All Rights Reserved by <a href="https://zaraconsulting.org" target="_blank">Zara Consulting, LLC</a></p>
                     </div>
                     <div class="col-lg-6 text-right link">
                         <ul>

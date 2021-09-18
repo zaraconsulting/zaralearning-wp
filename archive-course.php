@@ -28,10 +28,22 @@
 
                         while( have_posts() )
                         {
-                            the_post(); 
-                            // print_r($post->ID);
+                            the_post();
+
+                            $courseVideo = get_field( 'course_video' );
                             $course_category = get_the_terms( $post->ID, 'course_categories' )[0];
-                            // print_r( $course_category );
+                            $reviews = new WP_Query( 
+                                array( 
+                                    'post_type' => 'review',
+                                    'meta_query' => array(
+                                        array(
+                                            'key' => 'review_user_id',
+                                            'compare' => 'like',
+                                            'value' => get_the_ID(),
+                                        )
+                                    )
+                                )
+                            );
                             ?>
 
                             <!-- Single item -->
@@ -41,8 +53,7 @@
                                         <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
                                         <div class="course-info">
                                             <ul>
-                                                <li><i class="fas fa-clock"></i> 28 Hours</li>
-                                                <li><i class="fas fa-list-ul"></i> 266</li>
+                                                <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Minutes</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -52,33 +63,80 @@
                                             <ul>
                                                 <li>
                                                     <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name; ?>">
-                                                    <a href="#"><?php echo $relatedInstructor->first_name; ?></a> in <a href="<?php echo get_term_link( $course_category->slug, 'course_categories' ); ?>"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
+                                                    <span>
+                                                        <strong><?php echo $relatedInstructor->first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category->slug, 'course_categories' ); ?>"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="info">
+                                        
                                         <div class="price-rating">
-                                            <div class="rating">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                                <span>(78)</span>
-                                            </div>
-                                            <!-- <div class="price">
-                                                $38.00
-                                            </div> -->
+                                            <?php
+                                                if( $reviews->found_posts > 0 )
+                                                {
+                                                    $ratingsList = array();
+
+                                                    while( $reviews->have_posts() )
+                                                    {
+                                                        $reviews->the_post();
+                                                        array_push( $ratingsList, get_field( 'review_rating' ) );
+                                                    }
+                                                    wp_reset_postdata();
+                                                    ?>
+                                                    <div class="rating">
+                                                        <?php 
+                                                            
+                                                            $avgRatingStars = floor( array_sum( $ratingsList ) / count( $ratingsList ) );
+                                                            foreach( range( 1, $avgRatingStars ) as $a )
+                                                            { 
+                                                                ?>
+                                                                    <i class="fas fa-star"></i>
+                                                                <?php
+                                                            }
+                                                            
+                                                        ?>
+                                                        <!-- <i class="fas fa-star-half-alt"></i> -->
+                                                        <span>(<?php echo $reviews->found_posts; ?>)</span>
+                                                    </div>
+                                                    <!-- <div class="price">
+                                                        $38.00
+                                                    </div> -->
+                                                    <?php
+                                                }
+                                                else
+                                                {
+                                                    ?>
+                                                        <span>No reviews yet</span>
+                                                    <?php
+                                                }
+                                            ?>
                                         </div>
                                         <h5>
                                             <a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 30, '...' ); ?></a>
                                         </h5>
                                         <div class="bottom">
                                             <ul>
-                                                <li><i class="fas fa-user"></i> 8K</li>
+                                                <li><i class="fas fa-user"></i> <?php echo $reviews->found_posts; ?></li>
                                             </ul>
-                                            <a href="#"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                                                <?php
+
+                                                if( is_user_logged_in() )
+                                                {
+                                                    ?>
+                                                    <a href="<?php echo get_the_permalink(); ?>"><i class="fas fa-eye"></i> Watch</a>
+                                                    <?php
+                                                }
+                                                else
+                                                {
+                                                    ?>
+                                                    <a href="#"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                                                    <?php
+
+                                                }
+
+                                                ?>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +149,7 @@
 
                 </div>
                 <!-- Pagination -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12 pagi-area text-center">
                         <nav aria-label="navigation">
                             <ul class="pagination">
@@ -103,7 +161,7 @@
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

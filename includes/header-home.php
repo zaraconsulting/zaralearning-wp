@@ -6,7 +6,7 @@
             <div class="col-lg-4 left-info">
                 <ul class="list">
                     <li>
-                        Have any question? +123 456 7890
+                        Have any questions? +1 (469) 730-6696
                     </li>
                 </ul>
             </div>

@@ -9,8 +9,8 @@
                     <div class="col-lg-8 offset-lg-2">
                         <div class="content">
                             <h1>The Software Engineer's Toolkit</h1>
-                            <form action="#">
-                                <input type="text" placeholder="Search for a course" class="form-control" name="search-course">
+                            <form method="GET" action="<?php echo esc_url( site_url( '/courses' ) ); ?>">
+                                <input type="text" placeholder="Search for a course" class="form-control" name="s">
                                 <button type="submit"><i class="fas fa-search"></i></button>  
                             </form>
                         </div>
