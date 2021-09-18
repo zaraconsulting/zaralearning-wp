@@ -67,9 +67,9 @@
                                                 <i class="fas fa-star-half-alt"></i>
                                                 <span>(78)</span>
                                             </div>
-                                            <div class="price">
+                                            <!-- <div class="price">
                                                 $38.00
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h5>
                                             <a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 30, '...' ); ?></a>

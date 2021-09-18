@@ -1,4 +1,4 @@
-class ReviewForm
+class Review
 {
     constructor()
     {
@@ -42,4 +42,4 @@ class ReviewForm
     }
 }
 
-const reviewForm = new ReviewForm();
+const review = new Review();

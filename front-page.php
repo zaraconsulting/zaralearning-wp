@@ -44,7 +44,7 @@
 
                     $categories = get_terms( array(
                         'taxonomy' => 'course_categories',
-                        'hide_empty' => false
+                        'hide_empty' => true
                     ) );
 
                     foreach( $categories as $category )
@@ -58,7 +58,8 @@
                         <div class="item">
                             <div class="title">
                                 <!-- <i class="flaticon-innovation"></i> -->
-                                <h4><a href="<?php echo get_term_link( $category, 'course_categories' ); ?>"><?php echo $category->name; ?></a></h4>
+                                <!-- <h4><a class="term-link" data-term="<?php echo $category->slug; ?>" href="javascript:void(0);"><?php echo $category->name; ?></a></h4> -->
+                                <h4><a javascript:void(0) class="term-link" data-term="<?php echo $category->slug; ?>" href="<?php echo get_term_link( $category ); ?>"><?php echo $category->name; ?></a></h4>
                             </div>
                             <div class="thumb">
                                 <!-- <span>58 Courses</span> -->
@@ -120,6 +121,7 @@
                             $courseVideo = get_field( 'course_video' );
                             $instructor = get_field( 'related_instructors' )[0];
                             $course_category = get_the_terms( $post, 'course_categories' )[0];
+                            // print_r( get_the_terms( $post, 'course_categories' ) );
                             
                             ?>
 

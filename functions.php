@@ -2,6 +2,7 @@
 
     require get_theme_file_path( '/custom_models/reviews.php' );
     require get_theme_file_path( '/custom_models/courses.php' );
+    require get_theme_file_path( '/custom_models/course_categories.php' );
 
     function load_static_files()
     {
@@ -41,9 +42,15 @@
         wp_enqueue_script( 'main_scripts', get_theme_file_uri( '/assets/js/main.js' ), array( 'jquery' ), '1.12.4', true );       
         
         // custom modules
-        wp_enqueue_script( 'custom_modules', get_theme_file_uri( '/assets/js/modules/ReviewForm.js' ), array( 'jquery' ), '1.0', true );       
+        wp_enqueue_script( 'review_module', get_theme_file_uri( '/assets/js/modules/Review.js' ), array( 'jquery' ), '1.0', true );       
+        wp_enqueue_script( 'course-category-filter_module', get_theme_file_uri( '/assets/js/modules/CourseCategoryFilter.js' ), array(), '1.0', true );       
 
-        wp_localize_script( 'custom_modules', 'courseData', array(
+        wp_localize_script( 'review_modules', 'courseData', array(
+            'root_url' => get_site_url(),
+            'nonce' => wp_create_nonce( 'wp_rest' )
+        ) );
+
+        wp_localize_script( 'course-category-filter_module', 'courseData', array(
             'root_url' => get_site_url(),
             'nonce' => wp_create_nonce( 'wp_rest' )
         ) );
