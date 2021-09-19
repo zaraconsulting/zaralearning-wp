@@ -26,13 +26,13 @@
                             <h4 class="widget-title">Useful Links</h4>
                             <ul>
                                 <li>
-                                    <a href="#">Courses</a>
+                                    <a href="<?php echo site_url( 'courses' ); ?>">Courses</a>
                                 </li>
                                 <li>
                                     <a href="#">Instructors</a>
                                 </li>
                                 <li>
-                                    <a href="#">Contact</a>
+                                    <a href="<?php echo site_url( 'contact' ); ?>">Contact</a>
                                 </li>
                             </ul>
                         </div>

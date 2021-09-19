@@ -7,8 +7,6 @@
     </li>
     <!-- <li>
         <a href="<?php echo site_url( ); ?>">Instructors</a>
-    </li>
-    <li>
-        <a href="contact.html">Contact</a>
     </li> -->
+    <li><a href="<?php echo site_url( 'contact' ); ?>">Contact</a></li>
 </ul>

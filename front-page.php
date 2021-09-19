@@ -308,7 +308,7 @@
     ============================================= -->
     <div class="register-area bg-fixed default-padding-botom">
         <!-- Fixed BG -->
-        <div class="fixed-bg" style="background-image: url(https://zclearning.s3.amazonaws.com/pages/home/banner-2.jpg);"></div>
+        <div class="fixed-bg" style="background-image: url(<?php echo get_field( 'homepage_banner_secondary' )['sizes']['pageBanner']; ?>);"></div>
         <!-- End Fixed BG -->
         <div class="container">
             <div class="reg-items">
@@ -319,7 +319,8 @@
                             <p>
                                 Own partiality motionless was old excellence she inquietude contrasted. Sister giving so wicket cousin of an he rather marked. Of on game part body rich. Gravity letters it amongst herself dearest an windows by. Wooded ladies she basket season age her uneasy saw. Expression acceptance imprudence particular total competition. 
                             </p>
-                            <div class="counter-class" data-date="2021-3-24 23:59:59"><!-- Date Formate Input yyyy-mm-dd hh:mm:ss -->
+                            <!-- Date Formate Input yyyy-mm-dd hh:mm:ss -->
+                            <div class="counter-class" data-date="2021-3-24 23:59:59">
                                 <div class="item-list">
                                     <div class="counter-item">
                                         <div class="item">
