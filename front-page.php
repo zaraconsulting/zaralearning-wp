@@ -10,7 +10,7 @@
                         <div class="content">
                             <h1>The Software Engineer's Toolkit</h1>
                             <form method="GET" action="<?php echo esc_url( site_url( '/courses' ) ); ?>">
-                                <input type="text" placeholder="Search for a course" class="form-control" name="s">
+                                <input type="text" placeholder="Search for a trainig video" class="form-control" name="s">
                                 <button type="submit"><i class="fas fa-search"></i></button>  
                             </form>
                         </div>
@@ -93,13 +93,11 @@
                     <div class="col-lg-5">
                         <h5>Popular Topics</h5>
                         <h2>
-                            Our Most Popular & Trending Training Topics
+                            Career-Oriented Training Topics
                         </h2>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
-                        <p>
-                            Everything melancholy uncommonly but solicitude inhabiting projection off. Connection stimulated estimating excellence an to impression. 
-                        </p>
+                        <p>Search our videos to get started learning how to code from professionals in the industry. It's career-guided, so that means there's no fluff.</p>
                         <a class="btn btn-md btn-dark border" href="<?php echo site_url( 'courses' ); ?>">View All <i class="fas fa-plus"></i></a>
                     </div>
                 </div>
@@ -121,6 +119,18 @@
                             $courseVideo = get_field( 'course_video' );
                             $instructor = get_field( 'related_instructors' )[0];
                             $course_category = get_the_terms( $post, 'course_categories' )[0];
+                            $reviews = new WP_Query( 
+                                array( 
+                                    'post_type' => 'review',
+                                    'meta_query' => array(
+                                        array(
+                                            'key' => 'review_user_id',
+                                            'compare' => 'like',
+                                            'value' => get_the_ID(),
+                                        )
+                                    )
+                                )
+                            );
                             // print_r( get_the_terms( $post, 'course_categories' ) );
                             
                             ?>
@@ -133,9 +143,30 @@
                                         <a href="<?php the_permalink(); ?>">
                                             <img style="width: 100%; height:233px;" src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>" />
                                         </a>
-                                        <div class="price">
-                                            <h5>Free</h5>
-                                        </div>
+                                        <?php
+
+                                            if( !is_user_logged_in() )
+                                            {
+                                                ?>
+
+                                                    <div class="price">
+                                                        <h5>Free</h5>
+                                                    </div>
+
+                                                <?php
+                                            }
+                                            else
+                                            {
+                                                ?>
+
+                                                    <div class="price">
+                                                        <h5>Watch</h5>
+                                                    </div>
+
+                                                <?php
+                                            }
+
+                                        ?>
                                     </div>
                                     <div class="info">
                                         <div class="top-info">
@@ -160,25 +191,60 @@
                                                 <span><strong><?php echo $instructor->first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category, 'course_categories' ); ?>"><?php echo mb_strimwidth( $course_category->name, 0, 15, '...' ); ?></a></span>
                                             </div>
                                         </div>
-                                        <!-- <div class="bottom-info">
+                                        <div class="bottom-info">
                                             <div class="course-info">
-                                                <i class="fas fa-user"></i> 12K
+                                                <i class="fas fa-user"></i> <?php echo $reviews->found_posts; ?>
                                             </div>
                                             <div class="rating">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                                <span>4.9 (1,400)</span>
+                                                <?php
+                                                    if( $reviews->found_posts > 0 )
+                                                    {
+                                                        $ratingsList = array();
+
+                                                        while( $reviews->have_posts() )
+                                                        {
+                                                            $reviews->the_post();
+                                                            array_push( $ratingsList, get_field( 'review_rating' ) );
+                                                        }
+                                                        wp_reset_postdata();
+                                                        ?>
+                                                        <div class="rating">
+                                                            <?php 
+                                                                
+                                                                $avgRatingStars = floor( array_sum( $ratingsList ) / count( $ratingsList ) );
+                                                                foreach( range( 1, $avgRatingStars ) as $a )
+                                                                { 
+                                                                    ?>
+                                                                        <i class="fas fa-star"></i>
+                                                                    <?php
+                                                                }
+                                                                
+                                                            ?>
+                                                            <!-- <i class="fas fa-star-half-alt"></i> -->
+                                                            <span><?php echo number_format( array_sum( $ratingsList ) / count( $ratingsList ), 1 ); ?> (<?php echo $reviews->found_posts; ?>)</span>
+                                                        </div>
+                                                        <!-- <div class="price">
+                                                            $38.00
+                                                        </div> -->
+                                                        <?php
+                                                    }
+                                                    else
+                                                    {
+                                                        ?>
+                                                            <span>No reviews yet</span>
+                                                        <?php
+                                                    }
+                                                ?>
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- End Single item -->
 
                         <?php }
+
+                        wp_reset_postdata(  );
 
                     ?>
                 </div>
@@ -242,14 +308,14 @@
     ============================================= -->
     <div class="register-area bg-fixed default-padding-botom">
         <!-- Fixed BG -->
-        <div class="fixed-bg" style="background-image: url(<?php echo get_theme_file_uri( '/assets/img/2440x1578.png' ); ?>);"></div>
+        <div class="fixed-bg" style="background-image: url(https://zclearning.s3.amazonaws.com/pages/home/banner-2.jpg);"></div>
         <!-- End Fixed BG -->
         <div class="container">
             <div class="reg-items">
                 <div class="row">
                     <div class="col-lg-5 offset-lg-2 countdown">
                         <div class="countdown-inner">
-                            <h2>Get 50s of online Courses For Free!</h2>
+                            <h2>Get access to dozens of online courses!</h2>
                             <p>
                                 Own partiality motionless was old excellence she inquietude contrasted. Sister giving so wicket cousin of an he rather marked. Of on game part body rich. Gravity letters it amongst herself dearest an windows by. Wooded ladies she basket season age her uneasy saw. Expression acceptance imprudence particular total competition. 
                             </p>
@@ -301,7 +367,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <select>
-                                                <option value="1">Chose Subject</option>
+                                                <option disabled selected value="1">Choose Subject</option>
                                                 <option value="2">Computer Engineering</option>
                                                 <option value="4">Accounting Technologies</option>
                                                 <option value="5">Web Development</option>
@@ -316,7 +382,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <button type="submit">
-                                            Rigister Now
+                                            Sign Up Now
                                         </button>
                                     </div>
                                 </div>
@@ -331,45 +397,77 @@
 
     <!-- Star Blog Area
     ============================================= -->
+    <?php $blog_ready = false; ?>
+    
     <div class="blog-area bg-gray default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h5>Blog</h5>
-                        <h2>Latest From our Blog</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="blog-items">
-                <div class="row">
-                    <!-- Single Item -->
-                    <div class="col-lg-4 col-md-6 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="#"><img src="<?php echo get_theme_file_uri( '/assets/img/800x600.png' ); ?>" alt="Thumb"></a>
-                                <div class="date">
-                                    <strong>18 </strong> Aug
-                                </div>
-                            </div>
-                            <div class="content">
-                                <h4><a href="blog-single-right-sidebar.html">Comfort do written conduct prevent manners</a></h4>
-                                <p>
-                                     Arndlord packages overcame distance smallest in recurred. Wrong maids or be asked Household. 
-                                </p>
-                            </div>
-                            <div class="bottom-info">
-                                <span><i class="fas fa-user"></i> Jones Alex</span>
-                                <a class="btn-more" href="#">Read More <i class="arrow_right"></i></a>
+        <?php
+
+        if( $blog_ready )
+        {
+            ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2">
+                            <div class="site-heading text-center">
+                                <h5>Blog</h5>
+                                <h2>Latest From our Blog</h2>
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Item -->
                 </div>
-            </div>
-        </div>
+                <div class="container">
+                    <div class="blog-items">
+                        <div class="row">
+                            <?php
+
+                                $posts = new WP_Query(
+                                    array(
+                                        'post_type' => 'post',
+                                        'posts_per_page' => 4,
+                                        'orderby' => 'date',
+                                        'order' => 'DESC'
+                                    )
+                                );
+
+                                while( $posts->have_posts() )
+                                {
+                                    $posts->the_post();
+                                    ?>
+
+                                        <!-- Single Item -->
+                                        <div class="col-lg-4 col-md-6 single-item">
+                                            <div class="item">
+                                                <div class="thumb">
+                                                    <a href="<?php echo get_the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url( $post, 'postThumbnail' ); ?>" alt="<?php echo get_the_title(); ?>"></a>
+                                                    <div class="date">
+                                                        <strong><?php echo get_the_date( 'M' ); ?> </strong> <?php echo get_the_date( 'd' ); ?>
+                                                    </div>
+                                                </div>
+                                                <div class="content">
+                                                    <h4><a href="blog-single-right-sidebar.html"><?php echo get_the_title(); ?></a></h4>
+                                                    <p><?php echo wp_trim_words( get_the_content(), 15 ); ?></p>
+                                                </div>
+                                                <div class="bottom-info">
+                                                    <span><i class="fas fa-user"></i> <?php echo get_the_author(); ?></span>
+                                                    <a class="btn-more" href="<?php echo get_the_permalink(); ?>">Read More <i class="arrow_right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Item -->
+
+                                    <?php
+                                }
+
+                                wp_reset_postdata();
+
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            <?php
+        }
+
+        ?>
     </div>
     <!-- End Blog Area -->
 

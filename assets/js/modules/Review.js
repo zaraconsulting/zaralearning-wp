@@ -23,7 +23,7 @@ class Review
         const email = document.querySelector( '#course-comment-form #email' ).value;
         const rating = document.querySelector( '#course-comment-form #rating' ).value;
         const comment = document.querySelector( '#course-comment-form #comment' ).value;
-        const customFormData = { course_id, name, email, rating, comment };
+        const customFormData = { course_id, name, email, rating, comment, status: 'pending' };
         // const formData = {
         //     'title': name,
         //     'content': comment,

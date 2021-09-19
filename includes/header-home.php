@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row align-center">
             <div class="col-lg-4 left-info">
-                <ul class="list">
+                <ul class="list" style="margin-bottom: 0;">
                     <li>
                         Have any questions? +1 (469) 730-6696
                     </li>

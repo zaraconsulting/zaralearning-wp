@@ -6,7 +6,7 @@
             
             <div class="col-lg-7 col-md-12 left-info">
                 <div class="item-flex">
-                    <ul class="list">
+                    <ul class="list" style="margin-bottom: 0;">
                         <li>
                             <i class="fas fa-phone"></i> Have any questions? +1 (469) 730-6696
                         </li>

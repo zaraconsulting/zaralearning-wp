@@ -1,5 +1,5 @@
 <div class="item-flex">
-    <div class="social">
+    <!-- <div class="social">
         <ul>
             <li>
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -14,7 +14,7 @@
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </li>
         </ul>
-    </div>
+    </div> -->
     <div class="button">
         <?php
 

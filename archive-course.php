@@ -49,14 +49,16 @@
                             <!-- Single item -->
                             <div class="single-item col-lg-4 col-md-6">
                                 <div class="item">
-                                    <div class="thumb">
-                                        <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
-                                        <div class="course-info">
-                                            <ul>
-                                                <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Minutes</li>
-                                            </ul>
+                                    <a href="<?php echo get_the_permalink(); ?>">
+                                        <div class="thumb">
+                                            <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
+                                            <div class="course-info">
+                                                <ul>
+                                                    <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Minutes</li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <div class="top-info">
                                         <div class="meta">
                                             <?php $relatedInstructor = get_field( 'related_instructors' )[0]; ?>
@@ -100,9 +102,7 @@
                                                         <!-- <i class="fas fa-star-half-alt"></i> -->
                                                         <span>(<?php echo $reviews->found_posts; ?>)</span>
                                                     </div>
-                                                    <!-- <div class="price">
-                                                        $38.00
-                                                    </div> -->
+                                                    
                                                     <?php
                                                 }
                                                 else
@@ -112,6 +112,9 @@
                                                     <?php
                                                 }
                                             ?>
+                                            <div class="price">
+                                                Free
+                                            </div>
                                         </div>
                                         <h5>
                                             <a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 30, '...' ); ?></a>
@@ -131,7 +134,7 @@
                                                 else
                                                 {
                                                     ?>
-                                                    <a href="#"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                                                    <!-- <a href="#"><i class="fas fa-shopping-cart"></i> Add to cart</a> -->
                                                     <?php
 
                                                 }

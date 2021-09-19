@@ -46,78 +46,93 @@
         </div>
     </div>
     <div style="margin-top: 40px;" class="review-area">
-        <div class="comments-form">
-            <div class="title">
-                <h4 id="course-comment-reply-header">Leave a review</h4>
-            </div>
-            <form id="course-comment-form" class="contact-comments" method="POST" action="">
-                <?php
+        <?php
 
-                    $userInfo = array(
-                        'name' => '',
-                        'email' => '',
-                        'disabled' => 'disabled'
-                    );
-
-                    if( is_user_logged_in() )
-                    {
-
-                        $userInfo['name'] = wp_get_current_user()->first_name;
-                        $userInfo['email'] = wp_get_current_user()->email;
-                        $userInfo['disabled'] = 'disabled';
-                    }
-                    else
-                    {
-                        $userInfo['name'] = '';
-                        $userInfo['name'] = '';
-                        $userInfo['disabled'] = '';
-                    }
-
+            if( is_user_logged_in() )
+            {
                 ?>
-                <input id="course_id" type="hidden" name="course_id" value='<?php echo the_ID(); ?>' />
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <!-- Name -->
-                            <input id="name" name="name" class="form-control" placeholder="Name *" type="text" value="<?php echo $userInfo['name']; ?>" <?php echo $userInfo['disabled']; ?> />
-                        </div>
+                <div class="comments-form">
+                    <div class="title">
+                        <h4 id="course-comment-reply-header">Leave a review</h4>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <!-- Email -->
-                            <input id="email" name="email" class="form-control" placeholder="Email (optional)" type="email" value="<?php echo $userInfo['email']; ?>" />
+                    <form id="course-comment-form" class="contact-comments" method="POST" action="">
+                        <?php
+
+                            $userInfo = array(
+                                'name' => '',
+                                'email' => '',
+                                'disabled' => 'disabled'
+                            );
+
+                            if( is_user_logged_in() )
+                            {
+
+                                $userInfo['name'] = wp_get_current_user()->first_name;
+                                $userInfo['email'] = wp_get_current_user()->email;
+                                $userInfo['disabled'] = 'disabled';
+                            }
+                            else
+                            {
+                                $userInfo['name'] = '';
+                                $userInfo['name'] = '';
+                                $userInfo['disabled'] = '';
+                            }
+
+                        ?>
+                        <input id="course_id" type="hidden" name="course_id" value='<?php echo the_ID(); ?>' />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <!-- Name -->
+                                    <input id="name" name="name" class="form-control" placeholder="Name *" type="text" value="<?php echo $userInfo['name']; ?>" <?php echo $userInfo['disabled']; ?> />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <!-- Email -->
+                                    <input id="email" name="email" class="form-control" placeholder="Email (optional)" type="email" value="<?php echo $userInfo['email']; ?>" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select id="rating" class="form-control" name="rating">
+                                        <option selected disabled>Please rate this course</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group comments">
+                                    <!-- Comment -->
+                                    <textarea id="comment" class="form-control" placeholder="Comment *" name='text'></textarea>
+                                </div>
+                                <div class="form-group full-width submit">
+                                    <button type="submit">
+                                        Post Review
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <select id="rating" class="form-control" name="rating">
-                                <option selected disabled>Please rate this course</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group comments">
-                            <!-- Comment -->
-                            <textarea id="comment" class="form-control" placeholder="Comment *" name='text'></textarea>
-                        </div>
-                        <div class="form-group full-width submit">
-                            <button type="submit">
-                                Post Comment
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+                <?php
+            }
+            else
+            {
+                ?>
+                <p>Please log in to leave a review</p>
+                <?php
+            }
+
+        ?>
     </div>
 </div>
 <!-- End Comments Form -->

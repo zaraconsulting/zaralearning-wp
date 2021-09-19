@@ -133,7 +133,7 @@
                                                 else
                                                 {
                                                     ?>
-                                                    <a href="#"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                                                    <a href="<?php echo wp_login_url(); ?>"><i class="fa fa-user"></i> Log In</a>
                                                     <?php
 
                                                 }

@@ -64,6 +64,7 @@ function extra_features()
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
     add_image_size( 'playCourseVideoLandscape', 800, 600, true );
+    add_image_size( 'postThumbnail', 800, 600, true );
     add_image_size( 'relatedCourseVideoLandscape', 800, 800, true );
     add_image_size( 'courseCategoryLandscape', 360, 360, true );
     add_image_size( 'pageBanner', 2440, 1578, true );
