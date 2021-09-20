@@ -97,6 +97,24 @@
                         </h2>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
+                        <?php
+
+                            $students = new WP_Query( array(
+                                'post_type' => 'student'
+                            ) );
+
+                            while( $students->have_posts() )
+                            {
+                                $students->the_post();
+                                // echo get_field( 'student_api_key' );
+                                echo get_field( 'email' );
+                            }
+
+                            wp_reset_postdata();
+
+                            $currentUser = wp_get_current_user();
+                            echo $currentUser->user_email;
+                        ?>
                         <p>Search our videos to get started learning how to code from professionals in the industry. It's career-guided, so that means there's no fluff.</p>
                         <a class="btn btn-md btn-dark border" href="<?php echo site_url( 'courses' ); ?>">View All <i class="fas fa-plus"></i></a>
                     </div>

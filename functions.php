@@ -77,17 +77,43 @@ add_action( 'after_setup_theme', 'extra_features' );
 function redirectSubsToFrontEnd()
 {
 
-    $currentUser = wp_get_current_user(  );
+    // $currentUser = wp_get_current_user(  );
 
-    // If the logged in user only has one role and that role is Subscriber
-    if( count( $currentUser->roles ) == 1 AND ( $currentUser->roles[0] == 'subscriber' OR $currentUser->roles[0] == 'student' ) )
-    {
-        // Redirect them back to the homepage on logout
-        wp_redirect( site_url( '/' ) );
-        exit;
-    }
+    // // If the logged in user only has one role and that role is Subscriber
+    // if( count( $currentUser->roles ) == 1 AND ( $currentUser->roles[0] == 'subscriber' OR $currentUser->roles[0] == 'student' ) )
+    // {
+    //     // Redirect them back to the homepage on logout
+    //     wp_redirect( site_url( '/' ) );
+    //     exit;
+    // }
 }
 add_action( 'admin_init', 'redirectSubsToFrontEnd' );
+
+function verifyStudent()
+{
+    $currentUser = wp_get_current_user();
+
+    $students = new WP_Query( array(
+        'post_type' => 'student'
+    ) );
+
+    while( $students->have_posts() )
+    {
+        $students->the_post();
+        // echo get_field( 'student_api_key' );
+        // echo get_field( 'email' );
+        
+        if( $currentUser->user_email == get_field( 'email' ) AND get_field( 'student_api_key' ) )
+        {
+            wp_redirect( site_url( '/contact' ) );
+            exit;
+        }
+    }
+
+    wp_reset_postdata();
+
+}
+add_action( 'admin_init', 'verifyStudent' );
 
 // Redirect subscriber accounts out of admin and onto homepage
 function noSubsAdminBar()
