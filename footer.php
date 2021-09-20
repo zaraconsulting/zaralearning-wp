@@ -5,12 +5,13 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 item">
                         <div class="f-item about">
-                            <img src="<?php echo get_theme_file_uri( '/assets/img/logo-light.png' ); ?>" alt="Logo">
+                            <img src="<?php echo get_theme_file_uri( '/assets/img/logo.png' ); ?>" alt="Logo">
+                            <!-- <h2 class="widget-title">Zara Learning</h2> -->
                             <p>
-                                Required honoured trifling eat pleasure man relation. Assurance yet bed was improving furniture man. Distrusts delighted
+                                Every once in a while we'll be bothering you with a newsletter or two. We want to make you take full advantage of everything we have to offer.
                             </p>
                             <p class="text-italic">
-                                Please write your email and get our amazing updates, news and support*
+                                Please leave us your email to receive our amazing updates, news and support*
                             </p>
                             <div class="subscribe">
                                 <form action="#">
@@ -28,9 +29,9 @@
                                 <li>
                                     <a href="<?php echo site_url( 'courses' ); ?>">Courses</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="#">Instructors</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="<?php echo site_url( 'contact' ); ?>">Contact</a>
                                 </li>

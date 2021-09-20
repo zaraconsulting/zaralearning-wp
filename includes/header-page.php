@@ -10,9 +10,9 @@
                         <li>
                             <i class="fas fa-phone"></i> Have any questions? +1 (469) 730-6696
                         </li>
-                        <li>
+                        <!-- <li>
                             <i class="fas fa-bullhorn"></i> <a href="#">Become an Instructor</a>
-                        </li>
+                        </li> -->
                         <!-- <li>
                             <i class="fas fa-briefcase"></i> <a href="#">For Enterprise</a>
                         </li> -->
@@ -55,7 +55,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    <img src="assets/img/logo.png" class="logo" alt="Logo">
+                    <img src="<?php echo get_theme_file_uri( '/assets/img/logo.png' ); ?>" class="logo" alt="Logo">
                 </a>
             </div>
             <!-- End Header Navigation -->

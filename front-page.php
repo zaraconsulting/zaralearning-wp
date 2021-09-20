@@ -267,10 +267,10 @@
                     <div class="col-lg-5 left-info">
                         <h2>Why Learn Here?</h2>
                         <p>
-                            One advanced diverted domestic sex repeated bringing you old. Possible procured her trifling laughter thoughts property she met way. Companions shy had solicitude favourable own. 
+                            In a world bombarded with new content, it can be a bit confusing to sift through countless coding videos just to learn one concept. 
                         </p>
                         <p>
-                             Which could saw guest man now heard but. Lasted my coming uneasy marked so should. Gravity letters it amongst herself dearest an windows by. Wooded ladies she basket season age her uneasy saw. Discourse unwilling.
+                             Here, you can expedite the process of thumbing through countless hours of documentation and dealing with frustration. Follow along with our instructors as they give you information on only the things you need to know.
                         </p>
                     </div>
                     <div class="col-lg-6 offset-lg-1 right-info">
@@ -279,21 +279,21 @@
                                 <i class="fas fa-check"></i>
                                 <h4>Lower Learning Cost</h4>
                                 <p>
-                                    Discourse unwilling am no described dejection incommode no listening of. Before nature his parish boy.
+                                    Information should be accessible to everyone at a low cost. When everyone else raises their prices, we won't.
                                 </p>
                             </li>
                             <li>
                                 <i class="fas fa-check"></i>
                                 <h4>Learn With Experts</h4>
                                 <p>
-                                    Varoius unwilling am no described dejection incommode no listening highest. Before nature his parish more then expert.
+                                    Every instructor is a respected contributor of the software development community. You will receive real industry insight and learn best practices from the pros.
                                 </p>
                             </li>
                             <li>
                                 <i class="fas fa-check"></i>
-                                <h4>Different Course Variation</h4>
+                                <h4>Wide Variation of Topics</h4>
                                 <p>
-                                    Discourse unwilling am no described dejection incommode no listening of. Before nature his parish boy.
+                                    No one gets anywhere in the industry being one-dimensional. Learning all the tools and technologies of the trade.
                                 </p>
                             </li>
                         </ul>
@@ -315,9 +315,9 @@
                 <div class="row">
                     <div class="col-lg-5 offset-lg-2 countdown">
                         <div class="countdown-inner">
-                            <h2>Get access to dozens of online courses!</h2>
+                            <h2>Get access to dozens of online videos!</h2>
                             <p>
-                                Own partiality motionless was old excellence she inquietude contrasted. Sister giving so wicket cousin of an he rather marked. Of on game part body rich. Gravity letters it amongst herself dearest an windows by. Wooded ladies she basket season age her uneasy saw. Expression acceptance imprudence particular total competition. 
+                                With our rapidly growing library, you will have access to over 50 years of combined industry experience. If you're not sure where to start, feel free to reach out to us and we will be happy to help get a plan set up for you to reach success in the quickest way possible. If you want to just say hello, that's cool too. We look forward to hearing from you.
                             </p>
                             <!-- Date Formate Input yyyy-mm-dd hh:mm:ss -->
                             <div class="counter-class" data-date="2021-3-24 23:59:59">

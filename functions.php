@@ -80,7 +80,7 @@ function redirectSubsToFrontEnd()
     $currentUser = wp_get_current_user(  );
 
     // If the logged in user only has one role and that role is Subscriber
-    if( count( $currentUser->roles ) == 1 AND $currentUser->roles[0] == 'subscriber' )
+    if( count( $currentUser->roles ) == 1 AND ( $currentUser->roles[0] == 'subscriber' OR $currentUser->roles[0] == 'student' ) )
     {
         // Redirect them back to the homepage on logout
         wp_redirect( site_url( '/' ) );
@@ -95,7 +95,7 @@ function noSubsAdminBar()
 
     $currentUser = wp_get_current_user(  );
 
-    if( count( $currentUser->roles ) == 1 AND $currentUser->roles[0] == 'subscriber' )
+    if( count( $currentUser->roles ) == 1 AND ( $currentUser->roles[0] == 'subscriber' OR $currentUser->roles[0] == 'student' OR $currentUser->roles[0] == 'instructor' ) )
     {
         show_admin_bar( false );
     }
