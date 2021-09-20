@@ -215,9 +215,18 @@
                 <div class="item course-preview">
                     <div class="thumb">
                         <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
-                        <a href="<?php echo $courseVideo['url']; ?>" class="popup-youtube light video-play-button item-center">
-                            <i class="fa fa-play"></i>
-                        </a>
+                        <?php
+
+                        if( is_user_logged_in() )
+                        {
+                            ?>
+                                <a href="<?php echo $courseVideo['url']; ?>" class="popup-youtube light video-play-button item-center">
+                                    <i class="fa fa-play"></i>
+                                </a>
+                            <?php
+                        }
+
+                        ?>
                     </div>
                     <div class="content">
                         <div class="course-includes">

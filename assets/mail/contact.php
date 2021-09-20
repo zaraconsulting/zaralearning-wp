@@ -50,7 +50,7 @@ $address = "derek@zaraconsulting.org";
 
 // Example, $e_subject = '$name . ' has contacted you via Your Website.';
 
-$e_subject = 'Contact Form';
+$e_subject = '[Zara Learning] Contact Form Inquiry';
 
 
 // Configuration option.
