@@ -34,7 +34,7 @@
         if( is_front_page() )
         {
             ?>
-                <div class="se-pre-con"></div>
+                <!-- <div class="se-pre-con"></div> -->
             <?php
         }
     ?>
