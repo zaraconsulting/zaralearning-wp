@@ -30,7 +30,14 @@
 <body>
 
     <!-- Preloader Start -->
-    <div class="se-pre-con"></div>
+    <?php
+        if( is_front_page() )
+        {
+            ?>
+                <div class="se-pre-con"></div>
+            <?php
+        }
+    ?>
     <!-- Preloader Ends -->
 
     <?php

@@ -77,15 +77,15 @@ add_action( 'after_setup_theme', 'extra_features' );
 function redirectSubsToFrontEnd()
 {
 
-    // $currentUser = wp_get_current_user(  );
+    $currentUser = wp_get_current_user(  );
 
-    // // If the logged in user only has one role and that role is Subscriber
-    // if( count( $currentUser->roles ) == 1 AND ( $currentUser->roles[0] == 'subscriber' OR $currentUser->roles[0] == 'student' ) )
-    // {
-    //     // Redirect them back to the homepage on logout
-    //     wp_redirect( site_url( '/' ) );
-    //     exit;
-    // }
+    // If the logged in user only has one role and that role is Subscriber
+    if( count( $currentUser->roles ) == 1 AND ( $currentUser->roles[0] == 'subscriber' OR $currentUser->roles[0] == 'student' ) )
+    {
+        // Redirect them back to the homepage on logout
+        wp_redirect( site_url( '/' ) );
+        exit;
+    }
 }
 add_action( 'admin_init', 'redirectSubsToFrontEnd' );
 

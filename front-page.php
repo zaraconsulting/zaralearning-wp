@@ -10,7 +10,7 @@
                         <div class="content">
                             <h1>The Software Engineer's Toolkit</h1>
                             <form method="GET" action="<?php echo esc_url( site_url( '/courses' ) ); ?>">
-                                <input type="text" placeholder="Search for a trainig video" class="form-control" name="s">
+                                <input type="text" placeholder="Search for a training video" class="form-control" name="s">
                                 <button type="submit"><i class="fas fa-search"></i></button>  
                             </form>
                         </div>
