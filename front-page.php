@@ -367,10 +367,10 @@
                                         <div class="form-group">
                                             <select>
                                                 <option disabled selected value="1">Choose Subject</option>
-                                                <option value="2">Computer Engineering</option>
-                                                <option value="4">Accounting Technologies</option>
-                                                <option value="5">Web Development</option>
-                                                <option value="6">Machine Language</option>
+                                                <option value="2">Software Development</option>
+                                                <option value="4">Staff Training</option>
+                                                <option value="5">Data Analysis</option>
+                                                <option value="6">Other</option>
                                             </select>
                                         </div>
                                     </div>
