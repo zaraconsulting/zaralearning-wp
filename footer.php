@@ -80,7 +80,7 @@
                     <div class="col-lg-6 text-right link">
                         <ul>
                             <li>
-                                <a href="<?php echo site_url( '/privacy-policy' ); ?>">Privacy</a>
+                                <a href="<?php echo site_url( '/privacy-policy' ); ?>">Privacy Policy</a>
                             </li>
                         </ul>
                     </div>
