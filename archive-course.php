@@ -66,7 +66,7 @@
                                                 <li>
                                                     <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name; ?>">
                                                     <span>
-                                                        <strong><?php echo $relatedInstructor->first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category->slug, 'course_categories' ); ?>"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
+                                                        <strong><?php echo $relatedInstructor->first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category->slug, 'course_categories' ); ?>"><?php echo mb_strimwidth( $course_category->name, 0, 20, '...' ); ?></a>
                                                     </span>
                                                 </li>
                                             </ul>

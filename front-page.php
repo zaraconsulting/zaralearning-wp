@@ -345,7 +345,7 @@
                     </div>
                     <div class="col-lg-5 text-center reg-form">
                         <div class="form-box">
-                            <form action="#">
+                            <form action="#" id="front-page-contact-form">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
