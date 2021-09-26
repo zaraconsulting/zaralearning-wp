@@ -54,3 +54,8 @@
 .privacy-policy-container h2, .privacy-policy-container p {
     display: block;
 }
+
+form .alert-notification {
+    padding: unset !important;
+    margin-top: 15px !important;
+}
