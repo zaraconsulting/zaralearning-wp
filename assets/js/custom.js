@@ -5,3 +5,10 @@ frontPageForm.addEventListener( 'submit', function( e ) {
     // When finished
     window.location.reload();
 } );
+
+// setTimeout(() => {
+//     document.querySelector('.counter-seconds').innerText = '86,400';
+//     document.querySelector('.counter-minutes').innerText = '1,440';
+//     document.querySelector('.counter-hours').innerText = '24';
+//     document.querySelector('.counter-days').innerText = '365';
+// }, 3000)
