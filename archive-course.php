@@ -112,9 +112,9 @@
                                                     <?php
                                                 }
                                             ?>
-                                            <div class="price">
+                                            <!-- <div class="price">
                                                 Free
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h5>
                                             <a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 30, '...' ); ?></a>

@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 item">
                         <div class="f-item about">
-                            <img src="<?php echo get_theme_file_uri( '/assets/img/logo.png' ); ?>" alt="Logo">
+                            <img src="<?php echo get_theme_file_uri( '/assets/img/logo-dark.png' ); ?>" alt="Logo">
                             <!-- <h2 class="widget-title">Zara Learning</h2> -->
                             <p>
                                 Every once in a while we'll be bothering you with a newsletter or two. We want to make you take full advantage of everything we have to offer.
@@ -56,7 +56,7 @@
                             <div class="address">
                                 <ul>
                                     <li>
-                                        <strong>Email:</strong> <?php echo get_the_author_email(  ); ?>
+                                        <strong>Email:</strong> support@zaralearning.tech
                                     </li>
                                     <li>
                                         <strong>Contact:</strong> +1 (469) 730-6696

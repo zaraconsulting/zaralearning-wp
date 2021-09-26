@@ -11,8 +11,7 @@
                 </ul>
             </div>
             <div class="col-lg-4 logo text-center">
-                <!-- <h1 class="widget-title">Zara Learning</h1> -->
-                <a href="<?php echo site_url( ); ?>"><img src="<?php echo get_theme_file_uri( '/assets/img/logo.png' ); ?>" alt="Logo"></a>
+                <a href="<?php echo site_url( ); ?>"><img src="<?php echo get_theme_file_uri( '/assets/img/logo-dark.png' ); ?>" alt="Zara Learning"></a>
             </div>
             <div class="col-lg-4 right-info">
                  <?php get_template_part( '/includes/header', 'social-media' ); ?>
@@ -38,7 +37,7 @@
                             <i class="fa fa-bars"></i>
                         </button>
                         <a class="navbar-brand" href="<?php echo site_url( ); ?>">
-                            <img src="<?php echo get_theme_file_uri( '/assets/img/logo.png' ); ?>" class="logo" alt="Logo">
+                            <img src="<?php echo get_theme_file_uri( '/assets/img/logo.png' ); ?>" class="logo" alt="Zara Learning">
                         </a>
                     </div>
                     <!-- End Header Navigation -->

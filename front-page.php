@@ -23,57 +23,54 @@
 
     <!-- Star Categories Area
     ============================================= -->
-    <div class="categories-area carousel-shadow thumb-cats default-padding">
+    <div class="categories-area reverse bg-gray carousel-shadow default-padding">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h5>Browse Categories</h5>
-                        <h2>Popular Topics to learn</h2>
+            <div class="categories-box">
+                <div class="row">
+
+                    <div class="col-lg-5 heading">
+                        <h2>Select your favorite subject from best categories</h2>
+                        <p>
+                            Anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic. Distrusts delighted she listening mrs extensive admitting far. 
+                        </p>
+                        <!-- <a class="btn btn-md btn-gradient icon-left" href="<?php echo site_url( '/courses' ); ?>"><i class="fas fa-grip-horizontal"></i> View All</a> -->
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="category-items categories-carousel owl-carousel owl-theme text-light text-center">
+                            
+                            <?php
+
+                                $categories = get_terms( array(
+                                    'taxonomy' => 'course_categories',
+                                    'hide_empty' => true
+                                ) );
+
+                                foreach( $categories as $category )
+                                {
+                                    ?>
+                                        <div class="item">
+                                            <a style="background: <?php echo get_field( 'course_category_color', $category ); ?>;" href="<?php echo get_term_link( $category ); ?>">
+                                                <!-- <i class="flaticon-innovation"></i> -->
+                                                <div class="info">
+                                                    <h5><?php echo $category->name; ?></h5>
+                                                    <p><?php echo $category->description; ?></p>
+                                                    <span><?php echo $category->count; ?> Topics</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php
+                                }
+                            ?>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-full">
-            <div class="category-items thumb-categories-carousel owl-carousel owl-theme">
-                <?php
+    </div>
 
-                    // $categories = new WP_Query( array(
-                    //     'post_type' => 'category'
-                    // ) );
-
-                    $categories = get_terms( array(
-                        'taxonomy' => 'course_categories',
-                        'hide_empty' => true
-                    ) );
-
-                    foreach( $categories as $category )
-                    { 
-                        
-                        $image = get_field( 'taxonomy_featured_image', $category );
-
-                        ?>
-
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="title">
-                                <!-- <i class="flaticon-innovation"></i> -->
-                                <!-- <h4><a class="term-link" data-term="<?php echo $category->slug; ?>" href="javascript:void(0);"><?php echo $category->name; ?></a></h4> -->
-                                <h4><a javascript:void(0) class="term-link" data-term="<?php echo $category->slug; ?>" href="<?php echo get_term_link( $category ); ?>"><?php echo $category->name; ?></a></h4>
-                            </div>
-                            <div class="thumb">
-                                <!-- <span>58 Courses</span> -->
-                                <img src="<?php echo $image['url']; ?>" alt="<?php echo $category->name; ?>">
-                                <?php echo $category->taxonomy_featured_image; ?>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->                        
-
-                    <?php }
-
-                ?>
-            </div>
-        </div>
+    <div class="categories-area carousel-shadow thumb-cats default-padding">
     </div>
     <!-- End Categories -->
 
@@ -97,24 +94,6 @@
                         </h2>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
-                        <?php
-
-                            $students = new WP_Query( array(
-                                'post_type' => 'student'
-                            ) );
-
-                            while( $students->have_posts() )
-                            {
-                                $students->the_post();
-                                // echo get_field( 'student_api_key' );
-                                echo get_field( 'email' );
-                            }
-
-                            wp_reset_postdata();
-
-                            $currentUser = wp_get_current_user();
-                            echo $currentUser->user_email;
-                        ?>
                         <p>Search our videos to get started learning how to code from professionals in the industry. It's career-guided, so that means there's no fluff.</p>
                         <a class="btn btn-md btn-dark border" href="<?php echo site_url( 'courses' ); ?>">View All <i class="fas fa-plus"></i></a>
                     </div>

@@ -54,8 +54,8 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="<?php echo get_theme_file_uri( '/assets/img/logo.png' ); ?>" class="logo" alt="Logo">
+                <a class="navbar-brand" href="<?php echo site_url( ); ?>">
+                    <img src="<?php echo get_theme_file_uri( '/assets/img/logo.png' ); ?>" class="logo" alt="Zara Learning">
                 </a>
             </div>
             <!-- End Header Navigation -->
