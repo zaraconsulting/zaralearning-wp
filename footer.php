@@ -22,7 +22,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-2 col-md-6 item">
+                    <div class="col-lg-4 col-md-6 item">
                         <div class="f-item link">
                             <h4 class="widget-title">Useful Links</h4>
                             <ul>
@@ -39,24 +39,13 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-2 col-md-6 item">
-                        <div class="f-item link">
-                            <h4 class="widget-title">Support</h4>
-                            <ul>
-                                <!-- <li>
-                                    <a href="#">Documentation</a>
-                                </li> -->
-                            </ul>
-                        </div>
-                    </div>
-
                     <div class="col-lg-4 col-md-6 item">
                         <div class="f-item contact">
                             <h4 class="widget-title">Contact Info</h4>
                             <div class="address">
                                 <ul>
                                     <li>
-                                        <strong>Email:</strong> support@zaralearning.tech
+                                        <strong><a href="mailto:derek@zaraconsulting.org">Email:</a></strong> support@zaralearning.tech
                                     </li>
                                     <li>
                                         <strong>Contact:</strong> +1 (469) 730-6696
@@ -91,13 +80,7 @@
                     <div class="col-lg-6 text-right link">
                         <ul>
                             <li>
-                                <a href="#">Terms</a>
-                            </li>
-                            <li>
-                                <a href="#">Privacy</a>
-                            </li>
-                            <li>
-                                <a href="#">Support</a>
+                                <a href="<?php echo site_url( '/privacy-policy' ); ?>">Privacy</a>
                             </li>
                         </ul>
                     </div>

@@ -50,6 +50,7 @@
         display: none !important;
     }
 }
-/* .small-screen-link {
-    display: none;
-} */
+
+.privacy-policy-container h2, .privacy-policy-container p {
+    display: block;
+}
