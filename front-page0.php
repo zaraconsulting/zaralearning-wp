@@ -8,7 +8,7 @@
                 <div class="row align-center">
                     <div class="col-lg-8 offset-lg-2">
                         <div class="content">
-                            <h1>The Software Developer's Toolkit</h1>
+                            <h1>The Software Engineer's Toolkit</h1>
                             <form method="GET" action="<?php echo esc_url( site_url( '/courses' ) ); ?>">
                                 <input type="text" placeholder="Search for a training video" class="form-control" name="s">
                                 <button type="submit"><i class="fas fa-search"></i></button>  
@@ -88,9 +88,9 @@
             <div class="heading-left">
                 <div class="row">
                     <div class="col-lg-5">
-                        <h5>Popular Courses</h5>
+                        <h5>Popular Topics</h5>
                         <h2>
-                            Career-Oriented Training Courses
+                            Career-Oriented Training Topics
                         </h2>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
@@ -113,11 +113,9 @@
                         while( $courses->have_posts() )
                         {
                             $courses->the_post();
+                            $courseVideo = get_field( 'course_video' );
                             $instructor = get_field( 'related_instructors' )[0];
                             $course_category = get_the_terms( $post, 'course_categories' )[0];
-                            $courseVideoCountTotal = 0;
-                            $courseVideoCount = 0;
-                            
                             $reviews = new WP_Query( 
                                 array( 
                                     'post_type' => 'review',
@@ -130,72 +128,69 @@
                                     )
                                 )
                             );
-                            // print_r( $reviews );
-
-                            // Get video time totals
-                            $videos = get_terms( array(
-                                'taxonomy' => 'curriculum_video',
-                            ) );
-                            
-                            foreach( $videos as $v )
-                            {
-                                // print_r( get_field( 'curriculum_topic_video', $v ) );
-                                $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                                $courseVideoCountTotal+=$videoTime;
-                                
-                                $courseVideoCount+=$v->count;
-                            }
-                            // print_r( $courseVideoCount );
-
-                            // foreach( $videos as $video )
-                            // {
-                            //     $courseVideoCountTotal+=$video->count;
-                            //     // print( get_field( 'course_topic_video', $post->ID ) );
-                            //     // echo $term->count;
-                            //     // break;
-                            // }
-                            // print_r( $courseVideoCountTotal );
-                            // $terms = get_the_terms( $post->ID, 'curriculum_video' );
-
-                            // foreach( $terms as $v )
-                            // {
-                            //     echo $v->name;
-                            // }
-                            // print_r( get_the_terms( $post->post_name, 'curriculum_videos' ) );
-                            // Get video time totals
+                            // print_r( get_the_terms( $post, 'course_categories' ) );
                             
                             ?>
 
                             <!-- Single item -->
                             <div class="single-item col-lg-4 col-md-6">
+
                                 <div class="item">
                                     <div class="thumb">
-                                        <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
-                                        <div class="price">
-                                            <h5>Free</h5>
-                                        </div>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <img style="width: 100%; height:233px;" src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>" />
+                                        </a>
+                                        <?php
+
+                                            if( !is_user_logged_in() )
+                                            {
+                                                ?>
+
+                                                    <div class="price">
+                                                        <h5>Free</h5>
+                                                    </div>
+
+                                                <?php
+                                            }
+                                            else
+                                            {
+                                                ?>
+
+                                                    <div class="price">
+                                                        <h5>Watch</h5>
+                                                    </div>
+
+                                                <?php
+                                            }
+
+                                        ?>
                                     </div>
                                     <div class="info">
                                         <div class="top-info">
                                             <div class="top-meta">
                                                 <ul>
-                                                    <li><i class="fas fa-clock"></i> <?php echo floor( $courseVideoCountTotal / 60 ); ?> Hours</li>
-                                                    <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?></li>
+                                                    <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Minutes</li>
+                                                    <!-- <li><i class="fas fa-list-ul"></i> 2,400</li> -->
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h4>
-                                            <a href="<?php echo get_the_permalink(  ); ?>"><?php echo get_the_title(); ?></a>
-                                        </h4>
+                                        <h5>
+                                            <a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 30, '...' ); ?></a>
+                                        </h5>
                                         <div class="meta">
                                             <div class="author">
+                                                <?php
+
+                                                    // $cat = get_field( 'related_categories' )[0];
+
+                                                ?>
                                                 <img src="<?php echo get_the_post_thumbnail_url( $instructor->ID ); ?>" alt="<?php echo $instructor->first_name; ?>">
                                                 <span><strong><?php echo $instructor->first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category, 'course_categories' ); ?>"><?php echo mb_strimwidth( $course_category->name, 0, 15, '...' ); ?></a></span>
                                             </div>
                                         </div>
                                         <div class="bottom-info">
                                             <div class="course-info">
-                                                <!-- <i class="fas fa-user"></i> 3.6K -->
+                                                <i class="fas fa-user"></i> <?php echo $reviews->found_posts; ?>
                                             </div>
                                             <div class="rating">
                                                 <?php

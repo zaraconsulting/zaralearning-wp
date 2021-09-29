@@ -89,6 +89,9 @@
                                 <a href="" data-target="#tab1" data-toggle="tab" class="active nav-link">Overview</a>
                             </li>
                             <li class="nav-item">
+                                    <a href="" data-target="#tab2" data-toggle="tab" class="nav-link">Curriculum</a>
+                                </li>
+                            <li class="nav-item">
                                 <a href="" data-target="#tab4" data-toggle="tab" class="nav-link">Reviews</a>
                             </li>
                         </ul>
@@ -119,6 +122,99 @@
                                         </ul>
                                     <?php }
                                 ?>
+                            </div>
+                            <div id="tab2" class="tab-pane curriculum fade">
+                                <p>
+                                    Placing assured be if removed it besides on. Far shed each high read are men over day. Afraid we praise lively he suffer family estate is. Ample order up in of in ready. Timed blind had now those ought set often which. Or snug dull he show more true wish. No at many deny away miss evil. On in so indeed spirit an mother. Amounted old strictly but marianne admitted. People former is remove remain as.
+                                </p>
+                                <div class="accordion" id="accordionExample">
+
+                                    <?php
+
+                                        $curricula = new WP_Query( array(
+                                            'post_type' => 'curriculum',
+                                            'orderby' => 'date',
+                                            'order' => 'ASC'
+                                        ) );
+                                        // print_r( $curricula->posts );
+
+                                        foreach( $curricula->posts as $c )
+                                        {
+                                            ?>
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <h5 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                <?php echo $c->post_title; ?>
+                                                        </h5>
+                                                    </div>
+
+                                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <ul>
+                                                                <?php
+
+                                                                    // $videos = get_terms( array(
+                                                                    //     'taxonomy' => 'curriculum_video',
+                                                                    // ) );
+                                                                    $startingIdx = 1;
+                                                                    $videos = get_the_terms( $c, 'curriculum_video' );
+                                                                    // print_r( $videos );
+                                                                    // print_r( get_the_terms() );
+                                                                    
+                                                                    foreach( $videos as $v )
+                                                                    {
+                                                                        // print_r( $v );
+                                                                        $video = get_field( 'curriculum_topic_video', $v );
+
+                                                                        ?>
+                                                                            <li>
+                                                                                <div class="left-content">
+                                                                                    <span><?php echo $startingIdx; ?></span>
+                                                                                    <i class="fas fa-play-circle"></i>
+                                                                                    <h5><a class="popup-youtube" href="<?php echo $video['url']; ?>"><?php echo $v->name; ?></a></h5>
+                                                                                </div>
+                                                                                <div class="right-content">
+                                                                                    <!-- <a href="#">Preview</a> -->
+                                                                                    <span><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] ); ?> minutes</span>
+                                                                                </div>
+                                                                            </li>
+                                                                        <?
+                                                                        $startingIdx+=1;
+                                                                    }
+
+                                                                ?>
+                                                                <!-- <li>
+                                                                    <div class="left-content">
+                                                                        <span>01</span>
+                                                                        <i class="fas fa-play-circle"></i>
+                                                                        <h5><a href="#">Introduction Of Java</a></h5>
+                                                                    </div>
+                                                                    <div class="right-content">
+                                                                        <a href="#">Preview</a>
+                                                                        <span><i class="fas fa-clock"></i> 19 minutes</span>
+                                                                    </div>
+                                                                </li> -->
+                                                                <!-- <li>
+                                                                    <div class="left-content">
+                                                                        <span>02</span>
+                                                                        <i class="fas fa-file"></i>
+                                                                        <h5><a href="#">Basic Development</a></h5>
+                                                                    </div>
+                                                                    <div class="right-content">
+                                                                        <i class="fas fa-lock"></i>
+                                                                        <span><i class="fas fa-clock"></i> 11 minutes</span>
+                                                                    </div>
+                                                                </li> -->
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php
+                                            // print_r( $c->post_title );
+                                        }
+
+                                    ?>
+                                </div>
                             </div>
                             <div id="tab4" class="tab-pane reviews fade">
                                 <div class="row">
@@ -206,6 +302,26 @@
 
             </div>
             <div class="col-lg-4 sidebar">
+
+                <?php
+
+                    $videos = get_terms( array(
+                        'taxonomy' => 'curriculum_video',
+                    ) );
+                    $courseVideoCountTotal = 0;
+
+                    
+                    foreach( $videos as $v )
+                    {
+                        // print_r( get_field( 'curriculum_topic_video', $v ) );
+                        $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                        $courseVideoCountTotal+=$videoTime;
+                        
+                        $courseVideoCount+=$v->count;
+                    }
+
+                ?>
+
                 <!-- Single Item -->
                 <div class="item course-preview">
                     <div class="thumb">
@@ -215,7 +331,8 @@
                         if( is_user_logged_in() )
                         {
                             ?>
-                                <a href="<?php echo $courseVideo['url']; ?>" class="popup-youtube light video-play-button item-center">
+                                <a href="#" class="popup-youtube light video-play-button item-center">
+                                <!-- <a href="<?php echo $courseVideo['url']; ?>" class="popup-youtube light video-play-button item-center"> -->
                                     <i class="fa fa-play"></i>
                                 </a>
                             <?php
@@ -226,15 +343,21 @@
                     <div class="content">
                         <div class="course-includes">
                             <ul>
+                                <!-- <li>
+                                    <i class="fas fa-users"></i> Students <span class="float-right">12K</span>
+                                </li> -->
+                                <li>
+                                    <i class="fas fa-copy"></i> Lectures <span class="float-right"><?php echo $courseVideoCount; ?></span>
+                                </li>
                                 <li class="course-info">
-                                    <i class="fas fa-clock"></i> Duration <span class="float-right"><?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?>m</span>
+                                    <i class="fas fa-clock"></i> Duration <span class="float-right"><?php echo floor( $courseVideoCountTotal / 60 ); ?>h</span>
                                 </li>
                                 <li class="course-info">
                                     <i class="fas fa-sliders-h"></i> Skill level <span class="float-right"><?php echo get_field( 'skill_level' ); ?></span>
                                 </li>
-                                <!-- <li>
-                                    <i class="fas fa-users"></i> Students <span class="float-right">12K</span>
-                                </li> -->
+                                <li>
+                                    <i class="fas fa-language"></i> Language <span class="float-right">English</span>
+                                </li>
                             </ul>
                         </div>
                         <?php
@@ -248,7 +371,8 @@
                             else
                             {
                                 ?>
-                                    <a class="btn btn-theme effect btn-sm watch-button" href="<?php echo $courseVideo['url']; ?>">Watch</a>
+                                    <!-- <a class="btn btn-theme effect btn-sm watch-button" href="<?php echo $courseVideo['url']; ?>">Watch</a> -->
+                                    <a class="btn btn-theme effect btn-sm watch-button" href="#">Watch</a>
                                 <?php
                             }
 
