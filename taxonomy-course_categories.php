@@ -31,9 +31,12 @@
                         while( have_posts() )
                         {
                             
-                            the_post(); 
-                            $courseVideo = get_field( 'course_video' );
-                            $course_category = get_the_terms( $post->ID, 'course_categories' )[0];
+                            the_post();
+                            $instructor = get_field( 'related_instructors' )[0];
+                            $course_category = get_the_terms( $post, 'course_categories' )[0];
+                            $courseVideoCountTotal = 0;
+                            $courseVideoCount = 0;
+                            
                             $reviews = new WP_Query( 
                                 array( 
                                     'post_type' => 'review',
@@ -46,6 +49,21 @@
                                     )
                                 )
                             );
+                            // print_r( $reviews );
+
+                            // Get video time totals
+                            $videos = get_terms( array(
+                                'taxonomy' => 'curriculum_video',
+                            ) );
+                            
+                            foreach( $videos as $v )
+                            {
+                                // print_r( get_field( 'curriculum_topic_video', $v ) );
+                                $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                                $courseVideoCountTotal+=$videoTime;
+                                
+                                $courseVideoCount+=$v->count;
+                            }
                             ?>
 
                             <!-- Single item -->
@@ -55,8 +73,8 @@
                                         <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
                                         <div class="course-info">
                                             <ul>
-                                                <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Minutes</li>
-                                                <!-- <li><i class="fas fa-list-ul"></i> 266</li> -->
+                                                <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Hours</li>
+                                                <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -70,7 +88,7 @@
                                                         <strong>
                                                             <?php echo $relatedInstructor->first_name; ?>
                                                         </strong>
-                                                         <!-- in <a href="<?php echo get_term_link( $course_category->slug, 'course_categories' ); ?>"><?php echo mb_strimwidth( $course_category->name, 0, 20, '...' ); ?></a> -->
+                                                         in <strong><?php echo mb_strimwidth( $course_category->name, 0, 20, '...' ); ?></strong>
                                                     </span>
                                                 </li>
                                             </ul>

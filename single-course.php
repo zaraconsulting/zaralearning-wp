@@ -124,9 +124,7 @@
                                 ?>
                             </div>
                             <div id="tab2" class="tab-pane curriculum fade">
-                                <p>
-                                    Placing assured be if removed it besides on. Far shed each high read are men over day. Afraid we praise lively he suffer family estate is. Ample order up in of in ready. Timed blind had now those ought set often which. Or snug dull he show more true wish. No at many deny away miss evil. On in so indeed spirit an mother. Amounted old strictly but marianne admitted. People former is remove remain as.
-                                </p>
+                                <p><?php echo get_field( 'course_curriculum_description', $post ); ?></p>
                                 <div class="accordion" id="accordionExample">
 
                                     <?php
@@ -372,7 +370,7 @@
                             {
                                 ?>
                                     <!-- <a class="btn btn-theme effect btn-sm watch-button" href="<?php echo $courseVideo['url']; ?>">Watch</a> -->
-                                    <a class="btn btn-theme effect btn-sm watch-button" href="#">Watch</a>
+                                    <!-- <a class="btn btn-theme effect btn-sm watch-button" href="#">Watch</a> -->
                                 <?php
                             }
 
