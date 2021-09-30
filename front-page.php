@@ -169,12 +169,14 @@
                             <!-- Single item -->
                             <div class="single-item col-lg-4 col-md-6">
                                 <div class="item">
-                                    <div class="thumb">
-                                        <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
-                                        <div class="price">
-                                            <h5>Free</h5>
+                                    <a href="<?php echo get_the_permalink(  ); ?>">
+                                        <div class="thumb">
+                                            <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
+                                            <div class="price">
+                                                <h5>Free</h5>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <div class="info">
                                         <div class="top-info">
                                             <div class="top-meta">

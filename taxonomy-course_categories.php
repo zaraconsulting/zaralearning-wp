@@ -69,15 +69,17 @@
                             <!-- Single item -->
                             <div class="single-item col-lg-4 col-md-6">
                                 <div class="item">
-                                    <div class="thumb">
-                                        <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
-                                        <div class="course-info">
-                                            <ul>
-                                                <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Hours</li>
-                                                <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?></li>
-                                            </ul>
+                                    <a href="<?php echo get_the_permalink(  ); ?>">
+                                        <div class="thumb">
+                                            <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
+                                            <div class="course-info">
+                                                <ul>
+                                                    <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Hours</li>
+                                                    <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <div class="top-info">
                                         <div class="meta">
                                             <?php $relatedInstructor = get_field( 'related_instructors' )[0]; ?>
