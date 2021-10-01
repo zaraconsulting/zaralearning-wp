@@ -26,11 +26,11 @@
 
                     <?php
 
-                        $related_courses = get_field( 'related_courses' );
+                        $instructor_related_courses = get_field( 'instructor_related_courses' );
 
-                        while( $related_courses->have_posts() )
+                        while( $instructor_related_courses->have_posts() )
                         {
-                            $related_courses->the_post(); ?>
+                            $instructor_related_courses->the_post(); ?>
 
                             <!-- Single item -->
                             <div class="single-item col-lg-4 col-md-6">
@@ -49,8 +49,8 @@
                                             <?php $relatedInstructor = get_field( 'related_instructors' )[0]; ?>
                                             <ul>
                                                 <li>
-                                                    <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name; ?>">
-                                                    <a href="#"><?php echo $relatedInstructor->first_name; ?></a> in <a href="#"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
+                                                    <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->instructor_first_name . ' ' . $relatedInstructor->instructor_last_name; ?>">
+                                                    <a href="#"><?php echo $relatedInstructor->instructor_first_name; ?></a> in <a href="#"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
                                                 </li>
                                             </ul>
                                         </div>

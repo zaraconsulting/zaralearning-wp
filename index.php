@@ -48,8 +48,8 @@
                                             <?php $relatedInstructor = get_field( 'related_instructors' )[0]; ?>
                                             <ul>
                                                 <li>
-                                                    <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name; ?>">
-                                                    <a href="#"><?php echo $relatedInstructor->first_name; ?></a> in <a href="#"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
+                                                    <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->instructor_first_name . ' ' . $relatedInstructor->instructor_last_name; ?>">
+                                                    <a href="#"><?php echo $relatedInstructor->instructor_first_name; ?></a> in <a href="#"><?php echo mb_strimwidth( get_field( 'related_categories' )[0]->post_title, 0, 20, '...' ); ?></a>
                                                 </li>
                                             </ul>
                                         </div>

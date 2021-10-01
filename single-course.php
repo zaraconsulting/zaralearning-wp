@@ -36,11 +36,11 @@
                     <ul>
                         <li>
                             <div class="thumb">
-                                <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name; ?>">
+                                <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->instructor_first_name . ' ' . $relatedInstructor->instructor_last_name; ?>">
                             </div>
                             <div class="info">
                                 <span>Instructor</span>
-                                <h5><?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name[0]; ?></h5>
+                                <h5><?php echo $relatedInstructor->instructor_first_name . ' ' . $relatedInstructor->instructor_last_name[0]; ?></h5>
                             </div>
                         </li>
                         <li>
@@ -385,7 +385,7 @@
                         <h4>Related Courses</h4>
                         <div class="related-courses-items">
                             <?php 
-                                $relatedCourses = get_field( 'related_courses' );
+                                $relatedCourses = get_field( 'instructor_related_courses' );
                                 if( $relatedCourses )
                                 {
                                     foreach( $relatedCourses as $course )
@@ -411,7 +411,7 @@
                                                     </div> -->
                                                     <div class="meta">
                                                         <?php $instructor = get_field( 'related_instructors' )[0]; ?>
-                                                        <i class="fas fa-user"></i> By <?php echo $instructor->first_name; ?> 
+                                                        <i class="fas fa-user"></i> By <?php echo $instructor->instructor_first_name; ?> 
                                                     </div>
                                                 </div>
                                             </div>

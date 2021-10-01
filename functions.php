@@ -4,6 +4,9 @@ require get_theme_file_path( '/custom_models/reviews.php' );
 require get_theme_file_path( '/custom_models/courses.php' );
 require get_theme_file_path( '/custom_models/course_categories.php' );
 
+
+add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+
 function load_static_files()
 {
 

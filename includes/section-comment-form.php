@@ -67,7 +67,7 @@
                             if( is_user_logged_in() )
                             {
 
-                                $userInfo['name'] = wp_get_current_user()->first_name;
+                                $userInfo['name'] = wp_get_current_user()->instructor_first_name;
                                 $userInfo['email'] = wp_get_current_user()->email;
                                 $userInfo['disabled'] = 'disabled';
                             }

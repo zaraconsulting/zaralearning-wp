@@ -169,6 +169,7 @@
                             <!-- Single item -->
                             <div class="single-item col-lg-4 col-md-6">
                                 <div class="item">
+                                    <!-- Course Image -->
                                     <a href="<?php echo get_the_permalink(  ); ?>">
                                         <div class="thumb">
                                             <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
@@ -177,28 +178,42 @@
                                             </div>
                                         </div>
                                     </a>
+                                    <!-- Course Image -->
                                     <div class="info">
                                         <div class="top-info">
                                             <div class="top-meta">
                                                 <ul>
+                                                    <!-- Course Duration -->
                                                     <li><i class="fas fa-clock"></i> <?php echo floor( $courseVideoCountTotal / 60 ); ?> Hours</li>
+                                                    <!-- Course Duration -->
+
+                                                    <!-- Course Video Count -->
                                                     <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?></li>
+                                                    <!-- Course Video Count -->
                                                 </ul>
                                             </div>
                                         </div>
+                                        <!-- Course Title -->
                                         <h4>
                                             <a href="<?php echo get_the_permalink(  ); ?>"><?php echo get_the_title(); ?></a>
                                         </h4>
+                                        <!-- Course Title -->
                                         <div class="meta">
                                             <div class="author">
-                                                <img src="<?php echo get_the_post_thumbnail_url( $instructor->ID ); ?>" alt="<?php echo $instructor->first_name; ?>">
-                                                <span><strong><?php echo $instructor->first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category, 'course_categories' ); ?>"><?php echo mb_strimwidth( $course_category->name, 0, 15, '...' ); ?></a></span>
+                                                <!-- Course Instructor Image -->
+                                                <img src="<?php echo get_the_post_thumbnail_url( $instructor->ID ); ?>" alt="<?php echo $instructor->instructor_first_name; ?>">
+                                                <!-- Course Instructor Image -->
+
+                                                <!-- Course Name & Course Category -->
+                                                <span><strong><?php echo $instructor->instructor_first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category, 'course_categories' ); ?>"><?php echo mb_strimwidth( $course_category->name, 0, 15, '...' ); ?></a></span>
+                                                <!-- Course Name & Course Category -->
                                             </div>
                                         </div>
                                         <div class="bottom-info">
                                             <div class="course-info">
                                                 <!-- <i class="fas fa-user"></i> 3.6K -->
                                             </div>
+                                            <!-- Course Rating -->
                                             <div class="rating">
                                                 <?php
                                                     if( $reviews->found_posts > 0 )
@@ -240,6 +255,7 @@
                                                     }
                                                 ?>
                                             </div>
+                                            <!-- Course Rating -->
                                         </div>
                                     </div>
                                 </div>

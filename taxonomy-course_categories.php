@@ -85,10 +85,10 @@
                                             <?php $relatedInstructor = get_field( 'related_instructors' )[0]; ?>
                                             <ul>
                                                 <li>
-                                                    <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->first_name . ' ' . $relatedInstructor->last_name; ?>">
+                                                    <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->instructor_first_name . ' ' . $relatedInstructor->instructor_last_name; ?>">
                                                     <span>
                                                         <strong>
-                                                            <?php echo $relatedInstructor->first_name; ?>
+                                                            <?php echo $relatedInstructor->instructor_first_name; ?>
                                                         </strong>
                                                          in <strong><?php echo mb_strimwidth( $course_category->name, 0, 20, '...' ); ?></strong>
                                                     </span>

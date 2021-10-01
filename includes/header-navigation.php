@@ -5,9 +5,9 @@
     <li>
         <a href="<?php echo site_url( 'courses' ); ?>">Courses</a>
     </li>
-    <!-- <li>
-        <a href="<?php echo site_url( ); ?>">Instructors</a>
-    </li> -->
+    <li>
+        <a href="<?php echo site_url( 'instructors' ); ?>">Instructors</a>
+    </li>
     <li><a href="<?php echo site_url( 'contact' ); ?>">Contact</a></li>
     <?php
         if( is_user_logged_in() )
