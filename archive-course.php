@@ -73,7 +73,25 @@
                                             <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
                                             <div class="course-info">
                                                 <ul>
-                                                    <li><i class="fas fa-clock"></i> <?php echo floor( $courseVideoCountTotal / 60 ); ?> Hours</li>
+                                                    <li>
+                                                        <i class="fas fa-clock"></i> 
+                                                        <?php
+
+                                                            if( floor( $courseVideoCountTotal / 60 ) < 1 )
+                                                            {
+                                                                ?>
+                                                                    <?php echo $courseVideoCountTotal; ?> Minute<?php echo ( floor( $courseVideoCountTotal / 60 ) != 1 ) ? 's': ''; ?>
+                                                                <?php
+                                                            }
+                                                            else
+                                                            {
+                                                                ?>
+                                                                    <?php echo floor( $courseVideoCountTotal / 60 ); ?> Hour<?php echo ( floor( $courseVideoCountTotal / 60 ) != 1 ) ? 's': ''; ?>
+                                                                <?php
+                                                            }
+
+                                                        ?>
+                                                    </li>
                                                     <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?></li>
                                                 </ul>
                                             </div>

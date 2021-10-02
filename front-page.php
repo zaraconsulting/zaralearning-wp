@@ -29,11 +29,11 @@
                 <div class="row">
 
                     <div class="col-lg-5 heading">
-                        <h2>Select your favorite subject from best categories</h2>
+                        <h2>Find a subject related to a career of your interest</h2>
                         <p>
-                            Anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic. Distrusts delighted she listening mrs extensive admitting far. 
+                              We have a catalogue of subjects to choose from to get your started on a path toward your new career.
                         </p>
-                        <!-- <a class="btn btn-md btn-gradient icon-left" href="<?php echo site_url( '/courses' ); ?>"><i class="fas fa-grip-horizontal"></i> View All</a> -->
+                        <!-- <a class="btn btn-md btn-gradient icon-left text-white" href="<?php echo site_url( '/courses' ); ?>"><i class="fas fa-grip-horizontal"></i> View All</a> -->
                     </div>
 
                     <div class="col-lg-7">
@@ -51,11 +51,11 @@
                                     ?>
                                         <div class="item">
                                             <a style="background: <?php echo get_field( 'course_category_color', $category ); ?>;" href="<?php echo get_term_link( $category ); ?>">
-                                                <!-- <i class="flaticon-innovation"></i> -->
+                                                <i class="flaticon-<?php echo get_field( 'course_category_flaticon', $category ); ?>"></i>
                                                 <div class="info">
                                                     <h5><?php echo $category->name; ?></h5>
                                                     <p><?php echo $category->description; ?></p>
-                                                    <span><?php echo $category->count; ?> Topics</span>
+                                                    <span><?php echo $category->count; ?> Course<?php echo ($category->count != 1 ) ? 's' : ''; ?></span>
                                                 </div>
                                             </a>
                                         </div>
@@ -184,7 +184,22 @@
                                             <div class="top-meta">
                                                 <ul>
                                                     <!-- Course Duration -->
-                                                    <li><i class="fas fa-clock"></i> <?php echo floor( $courseVideoCountTotal / 60 ); ?> Hours</li>
+                                                    <?php
+
+                                                        if( floor( $courseVideoCountTotal / 60 ) < 1 )
+                                                        {
+                                                            ?>
+                                                                <li><i class="fas fa-clock"></i> <?php echo $courseVideoCountTotal; ?> Min<?php echo ( floor( $courseVideoCountTotal / 60 ) != 1 ) ? 's': ''; ?></li>
+                                                            <?php
+                                                        }
+                                                        else
+                                                        {
+                                                            ?>
+                                                                <li><i class="fas fa-clock"></i> <?php echo floor( $courseVideoCountTotal / 60 ); ?> Hour<?php echo ( floor( $courseVideoCountTotal / 60 ) != 1 ) ? 's': ''; ?></li>
+                                                            <?php
+                                                        }
+
+                                                    ?>
                                                     <!-- Course Duration -->
 
                                                     <!-- Course Video Count -->

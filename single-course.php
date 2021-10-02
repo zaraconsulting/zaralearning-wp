@@ -348,7 +348,23 @@
                                     <i class="fas fa-copy"></i> Lectures <span class="float-right"><?php echo $courseVideoCount; ?></span>
                                 </li>
                                 <li class="course-info">
-                                    <i class="fas fa-clock"></i> Duration <span class="float-right"><?php echo floor( $courseVideoCountTotal / 60 ); ?>h</span>
+                                    <i class="fas fa-clock"></i> Duration 
+                                    <span class="float-right">
+                                        <?php 
+                                            if( floor( $courseVideoCountTotal / 60 ) < 1 )
+                                            {
+                                                ?>
+                                                    <?php echo $courseVideoCountTotal; ?>m
+                                                <?php
+                                            }
+                                            else
+                                            {
+                                                ?>
+                                                    <?php echo floor( $courseVideoCountTotal / 60 ); ?>h
+                                                <?php
+                                            }
+                                        ?>
+                                    </span>
                                 </li>
                                 <li class="course-info">
                                     <i class="fas fa-sliders-h"></i> Skill level <span class="float-right"><?php echo get_field( 'skill_level' ); ?></span>
