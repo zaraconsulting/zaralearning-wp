@@ -7,10 +7,10 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <h1>Contact Us</h1>
-                    <ul class="breadcrumb">
+                    <!-- <ul class="breadcrumb">
                         <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
                         <li class="active">Contact</li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

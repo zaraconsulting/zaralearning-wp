@@ -8,7 +8,7 @@
                 <div class="row align-center">
                     <div class="col-lg-8 offset-lg-2">
                         <div class="content">
-                            <h1>The Software Developer's Toolkit</h1>
+                            <!-- <h1>The Software Developer's Toolkit</h1> -->
                             <form method="GET" action="<?php echo esc_url( site_url( '/courses' ) ); ?>">
                                 <input type="text" placeholder="Search for a training video" class="form-control" name="s">
                                 <button type="submit"><i class="fas fa-search"></i></button>  

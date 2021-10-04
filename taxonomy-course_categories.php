@@ -6,13 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h1>Courses</h1>
-                    <ul class="breadcrumb">
-                        <?php $term = get_queried_object(); ?>
+                    <?php $term = get_queried_object(); ?>
+                    <h1><?php echo $term->name; ?></h1>
+                    <!-- <ul class="breadcrumb">
                         <li><a href="<?php echo site_url( ); ?>"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="<?php echo site_url( '/courses' ); ?>">Courses</a></li>
                         <li class="active"><?php echo $term->name; ?></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
@@ -106,9 +106,9 @@
                                                     <img src="<?php echo get_the_post_thumbnail_url( $relatedInstructor->ID ); ?>" alt="<?php echo $relatedInstructor->instructor_first_name . ' ' . $relatedInstructor->instructor_last_name; ?>">
                                                     <span>
                                                         <strong>
-                                                            <?php echo $relatedInstructor->instructor_first_name; ?>
+                                                            <?php echo $relatedInstructor->instructor_first_name . ' ' . $relatedInstructor->instructor_last_name; ?>
                                                         </strong>
-                                                         in <strong><?php echo mb_strimwidth( $course_category->name, 0, 20, '...' ); ?></strong>
+                                                         <!-- in <strong><?php echo mb_strimwidth( $course_category->name, 0, 20, '...' ); ?></strong> -->
                                                     </span>
                                                 </li>
                                             </ul>

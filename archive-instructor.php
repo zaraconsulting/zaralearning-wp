@@ -7,10 +7,10 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <h1>Instructors</h1>
-                <ul class="breadcrumb">
+                <!-- <ul class="breadcrumb">
                     <li><a href="<?php echo site_url( '' ); ?>"><i class="fas fa-home"></i> Home</a></li>
                     <li class="active">Instructors</li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>

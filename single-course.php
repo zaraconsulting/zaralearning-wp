@@ -12,12 +12,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <h1>Course Details</h1>
-                <ul class="breadcrumb">
+                <h1><?php the_title(); ?></h1>
+                <!-- <ul class="breadcrumb">
                     <li><a href="<?php echo site_url( ); ?>"><i class="fas fa-home"></i> Home</a></li>
                     <li><a href="<?php echo site_url( '/courses' ); ?>"> Courses</a></li>
                     <li class="active"><?php the_title(); ?></li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>
@@ -32,7 +32,10 @@
             <div class="col-lg-8 info">
 
                 <div class="top-info">
-                    <h2><?php the_title(); ?></h2>
+                    <!-- <ul class="breadcrumb">
+                        <li><a href="<?php echo site_url( '/courses' ); ?>"> Courses</a></li>
+                        <li class="active"><?php the_title(); ?></li>
+                    </ul> -->
                     <ul>
                         <li>
                             <div class="thumb">

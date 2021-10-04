@@ -6,12 +6,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <h1>Advisor Details</h1>
-                <ul class="breadcrumb">
+                <h1>Instructor Details</h1>
+                <!-- <ul class="breadcrumb">
                     <li><a href="<?php echo site_url( '' ); ?>"><i class="fas fa-home"></i> Home</a></li>
                     <li><a href="<?php echo site_url( 'instructors' ); ?>">Instructors</a></li>
                     <li class="active">Instructor Details</li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>
