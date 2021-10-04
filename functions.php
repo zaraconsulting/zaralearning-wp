@@ -47,7 +47,8 @@ function load_static_files()
     wp_enqueue_script( 'loopcounter', get_theme_file_uri( '/assets/js/loopcounter.js' ), array( 'jquery' ), '1.12.4', true );            
     wp_enqueue_script( 'bootsnav', get_theme_file_uri( '/assets/js/bootsnav.js' ), array( 'jquery' ), '1.12.4', true );            
     wp_enqueue_script( 'main_scripts', get_theme_file_uri( '/assets/js/main.js' ), array( 'jquery' ), '1.12.4', true );       
-    wp_enqueue_script( 'cusotm_scripts', get_theme_file_uri( '/assets/js/custom.js' ), array( 'jquery' ), '1.12.4', true );       
+    wp_enqueue_script( 'custom_scripts', get_theme_file_uri( '/assets/js/custom.js' ), array( 'jquery' ), '1.12.4', true );       
+    wp_enqueue_script( 'googleMap', 'maps.googleapis.com/maps/api/js?key', array( 'jquery' ), '1.12.4', true );       
     
     // custom modules
     wp_enqueue_script( 'review_module', get_theme_file_uri( '/assets/js/modules/Review.js' ), array( 'jquery' ), '1.0', true );       
