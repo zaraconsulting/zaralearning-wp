@@ -6,11 +6,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h1>Courses</h1>
-                    <ul class="breadcrumb">
+                    <h1><?php the_title(); ?></h1>
+                    <!-- <ul class="breadcrumb">
                         <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
                         <li class="active"><?php the_title(); ?></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
