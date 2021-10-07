@@ -3,6 +3,7 @@
     $relatedInstructor = get_field( 'related_instructors' )[0];
     $courseVideo = get_field( 'course_video' );
     $course_category = get_the_terms( $post, 'course_categories' )[0];
+    $curriculum = get_field( 'related_curriculum', $post );
 
 ?>
 
@@ -132,24 +133,17 @@
 
                                     <?php
 
-                                        $curricula = new WP_Query( array(
-                                            'post_type' => 'curriculum',
-                                            'orderby' => 'date',
-                                            'order' => 'ASC'
-                                        ) );
-                                        // print_r( $curricula->posts );
-
-                                        foreach( $curricula->posts as $c )
+                                        foreach( $curriculum as $c )
                                         {
                                             ?>
                                                 <div class="card">
                                                     <div class="card-header" id="headingOne">
-                                                        <h5 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        <h5 class="mb-0" data-toggle="collapse" data-target="#<?php echo $c->post_name; ?>" aria-expanded="true" aria-controls="<?php echo $c->post_name; ?>">
                                                                 <?php echo $c->post_title; ?>
                                                         </h5>
                                                     </div>
 
-                                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                    <div id="<?php echo $c->post_name; ?>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             <ul>
                                                                 <?php
@@ -308,17 +302,22 @@
 
                     $videos = get_terms( array(
                         'taxonomy' => 'curriculum_video',
+                        // 'meta_key' =>
                     ) );
+                    // print_r( get_the_terms( $post, 'curriculum_video' ) );
                     $courseVideoCountTotal = 0;
 
-                    
-                    foreach( $videos as $v )
+                    foreach( $curriculum as $c )
                     {
-                        // print_r( get_field( 'curriculum_topic_video', $v ) );
-                        $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                        $courseVideoCountTotal+=$videoTime;
-                        
-                        $courseVideoCount+=$v->count;
+                        foreach( $videos as $v )
+                        {
+                            // print_r( get_field( 'curriculum_topic_video', $v ) );
+                            $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                            $courseVideoCountTotal+=$videoTime;
+                            
+                            $courseVideoCount+=$v->count;
+                        }
+                        break;
                     }
 
                 ?>

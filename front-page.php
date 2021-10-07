@@ -31,8 +31,9 @@
                     <div class="col-lg-5 heading">
                         <h2>Find a subject related to a career of your interest</h2>
                         <p>
-                              We have a catalogue of subjects to choose from to get your started on a path toward your new career.
+                              We have a catalogue of subjects to choose from to get you started on a path toward your new career. We have an extensive library of topics to choose from.
                         </p>
+                        <?php $terms = get_terms( 'course_category' ); ?>
                         <!-- <a class="btn btn-md btn-gradient icon-left text-white" href="<?php echo site_url( '/courses' ); ?>"><i class="fas fa-grip-horizontal"></i> View All</a> -->
                     </div>
 
@@ -136,33 +137,23 @@
                             $videos = get_terms( array(
                                 'taxonomy' => 'curriculum_video',
                             ) );
-                            
+
                             foreach( $videos as $v )
                             {
-                                // print_r( get_field( 'curriculum_topic_video', $v ) );
-                                $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                                $courseVideoCountTotal+=$videoTime;
-                                
-                                $courseVideoCount+=$v->count;
+                                // print_r( get_field( 'curriculum_course_parent', $v ) );
+                                $curriculum_course_parent = get_field( 'curriculum_course_parent', $v );
+                                // print_r( $curriculum_course_parent );
+                                foreach( $curriculum_course_parent as $ccp )
+                                {
+                                    // print_r( $ccp->ID );
+                                    if( $ccp->ID == $post->ID )
+                                    {
+                                        $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                                        $courseVideoCountTotal+=$videoTime;
+                                        $courseVideoCount+=$v->count;
+                                    }
+                                }
                             }
-                            // print_r( $courseVideoCount );
-
-                            // foreach( $videos as $video )
-                            // {
-                            //     $courseVideoCountTotal+=$video->count;
-                            //     // print( get_field( 'course_topic_video', $post->ID ) );
-                            //     // echo $term->count;
-                            //     // break;
-                            // }
-                            // print_r( $courseVideoCountTotal );
-                            // $terms = get_the_terms( $post->ID, 'curriculum_video' );
-
-                            // foreach( $terms as $v )
-                            // {
-                            //     echo $v->name;
-                            // }
-                            // print_r( get_the_terms( $post->post_name, 'curriculum_videos' ) );
-                            // Get video time totals
                             
                             ?>
 
@@ -210,7 +201,7 @@
                                         </div>
                                         <!-- Course Title -->
                                         <h4>
-                                            <a href="<?php echo get_the_permalink(  ); ?>"><?php echo get_the_title(); ?></a>
+                                            <a href="<?php echo get_the_permalink(  ); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 22, '...' ); ?></a>
                                         </h4>
                                         <!-- Course Title -->
                                         <div class="meta">

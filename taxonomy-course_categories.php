@@ -58,11 +58,19 @@
                             
                             foreach( $videos as $v )
                             {
-                                // print_r( get_field( 'curriculum_topic_video', $v ) );
-                                $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                                $courseVideoCountTotal+=$videoTime;
-                                
-                                $courseVideoCount+=$v->count;
+                                // print_r( get_field( 'curriculum_course_parent', $v ) );
+                                $curriculum_course_parent = get_field( 'curriculum_course_parent', $v );
+                                // print_r( $curriculum_course_parent );
+                                foreach( $curriculum_course_parent as $ccp )
+                                {
+                                    // print_r( $ccp->ID );
+                                    if( $ccp->ID == $post->ID )
+                                    {
+                                        $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                                        $courseVideoCountTotal+=$videoTime;
+                                        $courseVideoCount+=$v->count;
+                                    }
+                                }
                             }
                             ?>
 
@@ -157,7 +165,7 @@
                                             ?>
                                         </div>
                                         <h5>
-                                            <a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 30, '...' ); ?></a>
+                                            <a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 22, '...' ); ?></a>
                                         </h5>
                                         <div class="bottom">
                                             <ul>

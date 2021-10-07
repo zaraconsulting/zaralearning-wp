@@ -74,7 +74,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>All Rights Reserved by <a href="https://zaraconsulting.org" target="_blank">Zara Consulting, LLC</a></p>
+                        <p>All Rights Reserved by <a href="https://zaraconsulting.org" rel="nofollow" target="_blank">Zara Consulting, LLC</a></p>
                         <!-- <p>&copy; Copyright 2021. All Rights Reserved by <a href="https://zaraconsulting.org" target="_blank">Zara Consulting, LLC</a></p> -->
                     </div>
                     <div class="col-lg-6 text-right link">

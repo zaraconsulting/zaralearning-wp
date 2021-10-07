@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Zara Learning - The Software Developer's Toolkit">
+    <meta name="description" content="Watch online courses to learn how to be a web developer.">
 
     <!-- ========== Page Title ========== -->
     <title>Zara Learning</title>
