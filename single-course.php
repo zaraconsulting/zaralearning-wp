@@ -349,10 +349,10 @@
                         if( is_user_logged_in() )
                         {
                             ?>
-                                <a href="#" class="popup-youtube light video-play-button item-center">
+                                <!-- <a href="#" class="popup-youtube light video-play-button item-center"> -->
                                 <!-- <a href="<?php echo $courseVideo['url']; ?>" class="popup-youtube light video-play-button item-center"> -->
-                                    <i class="fa fa-play"></i>
-                                </a>
+                                    <!-- <i class="fa fa-play"></i>
+                                </a> -->
                             <?php
                         }
 
