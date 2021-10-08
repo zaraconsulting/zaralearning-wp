@@ -346,7 +346,7 @@
                                 With our rapidly growing library, you will have access to over 50 years of combined industry experience. If you're not sure where to start, feel free to reach out to us and we will be happy to help get a plan set up for you to reach success in the quickest way possible. Sign up for our newsletter to stay up to date with all of our events and release dates.
                             </p>
                             <!-- Date Formate Input yyyy-mm-dd hh:mm:ss -->
-                            <div class="d-none d-xs-block d-md-none">
+                            <div class="d-none d-md-block">
                                 <div class="counter-class" data-date="2021-11-03 00:00:01">
                                 <!-- <div class="counter-class" data-date="2021-9-26 23:59:59"> -->
                                     <div class="item-list">
