@@ -300,24 +300,42 @@
 
                 <?php
 
-                    $videos = get_terms( array(
-                        'taxonomy' => 'curriculum_video',
-                        // 'meta_key' =>
-                    ) );
-                    // print_r( get_the_terms( $post, 'curriculum_video' ) );
-                    $courseVideoCountTotal = 0;
-
+                    // $videos = get_terms( array(
+                    //     'taxonomy' => 'curriculum_video',
+                    //     // 'meta_key' =>
+                    // ) );
+                    // print_r( $videos );
+                    // $videoTime = 0;
+                    
                     foreach( $curriculum as $c )
                     {
+                        // print_r( $c );
+                        foreach( $videos as $v )
+                        {
+                            // print_r( get_field( 'curriculum_topic_video', $v ) );
+                            // print_r( get_field( 'curriculum_topic_video', $v ) );
+                            // $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                            // $courseVideoCountTotal+=$videoTime;
+                            
+                            $courseVideoCount+=$v->count;
+                            break;
+                        }
+                    }
+
+                    // $curriculum = get_field( 'related_curriculum', $post );
+                    $courseVideoCountTotal = 0;
+                    foreach( $curriculum as $c )
+                    {
+                        $videos = get_the_terms( $c, 'curriculum_video' );
                         foreach( $videos as $v )
                         {
                             // print_r( get_field( 'curriculum_topic_video', $v ) );
                             $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
                             $courseVideoCountTotal+=$videoTime;
                             
-                            $courseVideoCount+=$v->count;
+                            // $courseVideoCount+=$v->count;
+                            // break;
                         }
-                        break;
                     }
 
                 ?>
