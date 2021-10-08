@@ -55,7 +55,7 @@
                                                 <i class="flaticon-<?php echo get_field( 'course_category_flaticon', $category ); ?>"></i>
                                                 <div class="info">
                                                     <h5><?php echo $category->name; ?></h5>
-                                                    <p><?php echo $category->description; ?></p>
+                                                    <p><?php echo mb_strimwidth( $category->description, 0, 50, '...' ); ?></p>
                                                     <span><?php echo $category->count; ?> Course<?php echo ($category->count != 1 ) ? 's' : ''; ?></span>
                                                 </div>
                                             </a>
