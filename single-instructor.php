@@ -127,7 +127,7 @@
                 <h2><?php echo get_field( 'instructor_first_name' ) . ' ' . get_field( 'instructor_last_name' ); ?></h2>
                 <span><?php echo get_field( 'instructor_title' ); ?></span>
                 <ul>
-                    <li><i class="fas fa-play"></i> <?php echo count( get_field( 'instructor_related_courses' ) ); ?> Course<?php echo 's' ? count( get_field( 'instructor_related_courses' ) ) > 1 : ''; ?></li>
+                    <li><i class="fas fa-play"></i> <?php echo count( get_field( 'instructor_related_courses' ) ); ?> Course<?php echo count( get_field( 'instructor_related_courses' ) ) > 1 ? 's' : ''; ?></li>
                     <!-- <li><i class="fas fa-comment-alt"></i> 867 Rating</li> -->
                     <!-- <li><i class="fas fa-users"></i> 4k Students</li> -->
                 </ul>
