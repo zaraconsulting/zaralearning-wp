@@ -34,7 +34,8 @@
                             the_post();
                             $instructor = get_field( 'related_instructors' )[0];
                             $course_category = get_the_terms( $post, 'course_categories' )[0];
-                            $courseVideoCountTotal = 0;
+                            $courseVideoMinutesTotal = 0;
+                            $courseVideoHoursTotal = 0;
                             $courseVideoCount = 0;
                             
                             $reviews = new WP_Query( 
@@ -66,12 +67,16 @@
                                     // print_r( $ccp->ID );
                                     if( $ccp->ID == $post->ID )
                                     {
-                                        $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                                        $courseVideoCountTotal+=$videoTime;
+                                        $videoHours = gmdate( "H", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                                        $videoMinutes = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                                        $courseVideoMinutesTotal+=$videoMinutes;
+                                        $courseVideoHoursTotal += $videoHours;
                                         $courseVideoCount+=$v->count;
                                     }
                                 }
                             }
+                            $courseVideoMinutesTotal += $courseVideoHoursTotal;
+                            $courseDuration = floor( $courseVideoMinutesTotal / 60 ) + floor( $courseVideoHoursTotal );
                             ?>
 
                             <!-- Single item -->
@@ -86,16 +91,16 @@
                                                         <i class="fas fa-clock"></i> 
                                                         <?php
 
-                                                            if( floor( $courseVideoCountTotal / 60 ) < 1 )
+                                                            if( floor( $courseVideoMinutesTotal / 60 ) < 1 )
                                                             {
                                                                 ?>
-                                                                    <?php echo $courseVideoCountTotal; ?> Minute<?php echo ( floor( $courseVideoCountTotal / 60 ) != 1 ) ? 's': ''; ?>
+                                                                    <?php echo $courseVideoMinutesTotal; ?> Minute<?php echo ( floor( $courseVideoMinutesTotal / 60 ) != 1 ) ? 's': ''; ?>
                                                                 <?php
                                                             }
                                                             else
                                                             {
                                                                 ?>
-                                                                    <?php echo floor( $courseVideoCountTotal / 60 ); ?> Hour<?php echo ( floor( $courseVideoCountTotal / 60 ) != 1 ) ? 's': ''; ?>
+                                                                    <?php echo $courseDuration; ?> Hour<?php echo ( $courseDuration > 1 ) ? 's': ''; ?>
                                                                 <?php
                                                             }
 

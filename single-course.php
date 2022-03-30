@@ -160,6 +160,9 @@
                                                                     {
                                                                         // print_r( $v );
                                                                         $video = get_field( 'curriculum_topic_video', $v );
+                                                                        $videoHour = gmdate( "H", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                                                                        $videoMinutes = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                                                                        // print_r(gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] ));
 
                                                                         ?>
                                                                             <li>
@@ -170,7 +173,16 @@
                                                                                 </div>
                                                                                 <div class="right-content">
                                                                                     <!-- <a href="#">Preview</a> -->
-                                                                                    <span><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] ); ?> minutes</span>
+                                                                                    <span>
+                                                                                        <i class="fas fa-clock"></i> 
+                                                                                        <?php 
+                                                                                            if ($videoHour != '00') {
+                                                                                                echo "{$videoHour}h";
+                                                                                                // print_r('hi');
+                                                                                            }
+                                                                                        ?> 
+                                                                                        <?php echo gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] ); ?>m
+                                                                                    </span>
                                                                                 </div>
                                                                             </li>
                                                                         <?
@@ -315,7 +327,7 @@
                             // print_r( get_field( 'curriculum_topic_video', $v ) );
                             // print_r( get_field( 'curriculum_topic_video', $v ) );
                             // $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                            // $courseVideoCountTotal+=$videoTime;
+                            // $courseVideoMinutesTotal+=$videoTime;
                             
                             $courseVideoCount+=$v->count;
                             break;
@@ -323,20 +335,27 @@
                     }
 
                     // $curriculum = get_field( 'related_curriculum', $post );
-                    $courseVideoCountTotal = 0;
+                    $courseVideoMinutesTotal = 0;
+                    $courseVideoHoursTotal = 0;
                     foreach( $curriculum as $c )
                     {
                         $videos = get_the_terms( $c, 'curriculum_video' );
                         foreach( $videos as $v )
                         {
                             // print_r( get_field( 'curriculum_topic_video', $v ) );
-                            $videoTime = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                            $courseVideoCountTotal+=$videoTime;
+                            $videoHours = gmdate( "H", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                            $videoMinutes = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
+                            $courseVideoMinutesTotal+=$videoMinutes;
+
+                            $courseVideoHoursTotal += $videoHours;
                             
                             // $courseVideoCount+=$v->count;
                             // break;
                         }
                     }
+
+                    $courseVideoMinutesTotal += $courseVideoHoursTotal;
+                    $courseDuration = floor( $courseVideoMinutesTotal / 60 ) + floor( $courseVideoHoursTotal )
 
                 ?>
 
@@ -371,16 +390,16 @@
                                     <i class="fas fa-clock"></i> Duration 
                                     <span class="float-right">
                                         <?php 
-                                            if( floor( $courseVideoCountTotal / 60 ) < 1 )
+                                            if( floor( $courseVideoMinutesTotal / 60 ) < 1 )
                                             {
                                                 ?>
-                                                    <?php echo $courseVideoCountTotal; ?>m
+                                                    <?php echo $courseVideoMinutesTotal; ?>m
                                                 <?php
                                             }
                                             else
                                             {
                                                 ?>
-                                                    <?php echo floor( $courseVideoCountTotal / 60 ); ?>h
+                                                    <?php echo $courseDuration; ?>h
                                                 <?php
                                             }
                                         ?>

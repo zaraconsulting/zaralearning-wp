@@ -59,3 +59,8 @@ form .alert-notification {
     padding: unset !important;
     margin-top: 15px !important;
 }
+
+.course-category-link:hover {
+    color: #000;
+    text-decoration: unset;
+}

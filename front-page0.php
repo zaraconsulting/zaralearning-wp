@@ -8,7 +8,7 @@
                 <div class="row align-center">
                     <div class="col-lg-8 offset-lg-2">
                         <div class="content">
-                            <!-- <h1>The Software Developer's Toolkit</h1> -->
+                            <h1>The Software Engineer's Toolkit</h1>
                             <form method="GET" action="<?php echo esc_url( site_url( '/courses' ) ); ?>">
                                 <input type="text" placeholder="Search for a training video" class="form-control" name="s">
                                 <button type="submit"><i class="fas fa-search"></i></button>  
@@ -29,12 +29,11 @@
                 <div class="row">
 
                     <div class="col-lg-5 heading">
-                        <h2>Find a subject related to a career of your interest</h2>
+                        <h2>Select your favorite subject from best categories</h2>
                         <p>
-                              We have a catalogue of subjects to choose from to get you started on a path toward your new career. We have an extensive library of topics to choose from.
+                            Anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now. My improved honoured he am ecstatic. Distrusts delighted she listening mrs extensive admitting far. 
                         </p>
-                        <?php $terms = get_terms( 'course_category' ); ?>
-                        <!-- <a class="btn btn-md btn-gradient icon-left text-white" href="<?php echo site_url( '/courses' ); ?>"><i class="fas fa-grip-horizontal"></i> View All</a> -->
+                        <!-- <a class="btn btn-md btn-gradient icon-left" href="<?php echo site_url( '/courses' ); ?>"><i class="fas fa-grip-horizontal"></i> View All</a> -->
                     </div>
 
                     <div class="col-lg-7">
@@ -51,12 +50,12 @@
                                 {
                                     ?>
                                         <div class="item">
-                                            <a class="course-category-link" style="background: <?php echo get_field( 'course_category_color', $category ); ?>;" href="<?php echo get_term_link( $category ); ?>">
-                                                <i class="flaticon-<?php echo get_field( 'course_category_flaticon', $category ); ?>"></i>
+                                            <a style="background: <?php echo get_field( 'course_category_color', $category ); ?>;" href="<?php echo get_term_link( $category ); ?>">
+                                                <!-- <i class="flaticon-innovation"></i> -->
                                                 <div class="info">
                                                     <h5><?php echo $category->name; ?></h5>
-                                                    <p><?php echo mb_strimwidth( $category->description, 0, 50, '...' ); ?></p>
-                                                    <span><?php echo $category->count; ?> Course<?php echo ($category->count != 1 ) ? 's' : ''; ?></span>
+                                                    <p><?php echo $category->description; ?></p>
+                                                    <span><?php echo $category->count; ?> Topics</span>
                                                 </div>
                                             </a>
                                         </div>
@@ -89,9 +88,9 @@
             <div class="heading-left">
                 <div class="row">
                     <div class="col-lg-5">
-                        <h5>Popular Courses</h5>
+                        <h5>Popular Topics</h5>
                         <h2>
-                            Career-Oriented Training Courses
+                            Career-Oriented Training Topics
                         </h2>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
@@ -114,12 +113,9 @@
                         while( $courses->have_posts() )
                         {
                             $courses->the_post();
+                            $courseVideo = get_field( 'course_video' );
                             $instructor = get_field( 'related_instructors' )[0];
                             $course_category = get_the_terms( $post, 'course_categories' )[0];
-                            $courseVideoMinutesTotal = 0;
-                            $courseVideoHoursTotal = 0;
-                            $courseVideoCount = 0;
-                            
                             $reviews = new WP_Query( 
                                 array( 
                                     'post_type' => 'review',
@@ -132,100 +128,70 @@
                                     )
                                 )
                             );
-                            // print_r( $reviews );
-
-                            // Get video time totals
-                            $videos = get_terms( array(
-                                'taxonomy' => 'curriculum_video',
-                            ) );
-
-                            foreach( $videos as $v )
-                            {
-                                // print_r( get_field( 'curriculum_course_parent', $v ) );
-                                $curriculum_course_parent = get_field( 'curriculum_course_parent', $v );
-                                // print_r( $curriculum_course_parent );
-                                foreach( $curriculum_course_parent as $ccp )
-                                {
-                                    // print_r( $ccp->ID );
-                                    if( $ccp->ID == $post->ID )
-                                    {
-                                        $videoHours = gmdate( "H", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                                        $videoMinutes = gmdate( "i", wp_get_attachment_metadata( get_field( 'curriculum_topic_video', $v )['ID'] )['length'] );
-                                        $courseVideoMinutesTotal+=$videoMinutes;
-                                        $courseVideoHoursTotal += $videoHours;
-                                        $courseVideoCount+=$v->count;
-                                    }
-                                }
-                            }
-                            $courseVideoMinutesTotal += $courseVideoHoursTotal;
-                            $courseDuration = floor( $courseVideoMinutesTotal / 60 ) + floor( $courseVideoHoursTotal );
-
+                            // print_r( get_the_terms( $post, 'course_categories' ) );
                             
                             ?>
 
                             <!-- Single item -->
                             <div class="single-item col-lg-4 col-md-6">
+
                                 <div class="item">
-                                    <!-- Course Image -->
-                                    <a href="<?php echo get_the_permalink(  ); ?>">
-                                        <div class="thumb">
-                                            <img src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>">
-                                            <div class="price">
-                                                <h5>Free</h5>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- Course Image -->
+                                    <div class="thumb">
+                                        <a href="<?php the_permalink(); ?>">
+                                            <img style="width: 100%; height:233px;" src="<?php the_post_thumbnail_url( 'playCourseVideoLandscape' ); ?>" alt="<?php the_title(); ?>" />
+                                        </a>
+                                        <?php
+
+                                            if( !is_user_logged_in() )
+                                            {
+                                                ?>
+
+                                                    <div class="price">
+                                                        <h5>Free</h5>
+                                                    </div>
+
+                                                <?php
+                                            }
+                                            else
+                                            {
+                                                ?>
+
+                                                    <div class="price">
+                                                        <h5>Watch</h5>
+                                                    </div>
+
+                                                <?php
+                                            }
+
+                                        ?>
+                                    </div>
                                     <div class="info">
                                         <div class="top-info">
                                             <div class="top-meta">
                                                 <ul>
-                                                    <!-- Course Duration -->
-                                                    <?php
-
-                                                        if( floor( $courseVideoMinutesTotal / 60 ) < 1 )
-                                                        {
-                                                            ?>
-                                                                <li><i class="fas fa-clock"></i> <?php echo $courseVideoMinutesTotal; ?> Min<?php echo ( floor( $courseVideoMinutesTotal / 60 ) != 1 ) ? 's': ''; ?></li>
-                                                            <?php
-                                                        }
-                                                        else
-                                                        {
-                                                            ?>
-                                                                <li><i class="fas fa-clock"></i> <?php echo $courseDuration; ?> Hour<?php echo ( $courseDuration > 1 ) ? 's': ''; ?></li>
-                                                            <?php
-                                                        }
-
-                                                    ?>
-                                                    <!-- Course Duration -->
-
-                                                    <!-- Course Video Count -->
-                                                    <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?></li>
-                                                    <!-- Course Video Count -->
+                                                    <li><i class="fas fa-clock"></i> <?php echo gmdate( "i", wp_get_attachment_metadata( $courseVideo['ID'] )['length'] ); ?> Minutes</li>
+                                                    <!-- <li><i class="fas fa-list-ul"></i> 2,400</li> -->
                                                 </ul>
                                             </div>
                                         </div>
-                                        <!-- Course Title -->
-                                        <h4>
-                                            <a href="<?php echo get_the_permalink(  ); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 22, '...' ); ?></a>
-                                        </h4>
-                                        <!-- Course Title -->
+                                        <h5>
+                                            <a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth( get_the_title(), 0, 30, '...' ); ?></a>
+                                        </h5>
                                         <div class="meta">
                                             <div class="author">
-                                                <!-- Course Instructor Image -->
-                                                <img src="<?php echo get_the_post_thumbnail_url( $instructor->ID ); ?>" alt="<?php echo $instructor->instructor_first_name; ?>">
-                                                <!-- Course Instructor Image -->
+                                                <?php
 
-                                                <!-- Course Name & Course Category -->
+                                                    // $cat = get_field( 'related_categories' )[0];
+
+                                                ?>
+                                                <img src="<?php echo get_the_post_thumbnail_url( $instructor->ID ); ?>" alt="<?php echo $instructor->instructor_first_name; ?>">
                                                 <span><strong><?php echo $instructor->instructor_first_name; ?></strong> in <a href="<?php echo get_term_link( $course_category, 'course_categories' ); ?>"><?php echo mb_strimwidth( $course_category->name, 0, 15, '...' ); ?></a></span>
-                                                <!-- Course Name & Course Category -->
                                             </div>
                                         </div>
                                         <div class="bottom-info">
                                             <div class="course-info">
-                                                <!-- <i class="fas fa-user"></i> 3.6K -->
+                                                <i class="fas fa-user"></i> <?php echo $reviews->found_posts; ?>
                                             </div>
-                                            <!-- Course Rating -->
                                             <div class="rating">
                                                 <?php
                                                     if( $reviews->found_posts > 0 )
@@ -267,7 +233,6 @@
                                                     }
                                                 ?>
                                             </div>
-                                            <!-- Course Rating -->
                                         </div>
                                     </div>
                                 </div>
@@ -352,29 +317,27 @@
                                 With our rapidly growing library, you will have access to over 50 years of combined industry experience. If you're not sure where to start, feel free to reach out to us and we will be happy to help get a plan set up for you to reach success in the quickest way possible. Sign up for our newsletter to stay up to date with all of our events and release dates.
                             </p>
                             <!-- Date Formate Input yyyy-mm-dd hh:mm:ss -->
-                            <div class="d-none d-lg-block">
-                                <div class="counter-class" data-date="2021-11-03 00:00:01">
-                                <!-- <div class="counter-class" data-date="2021-9-26 23:59:59"> -->
-                                    <div class="item-list">
-                                        <div class="counter-item">
-                                            <div class="item">
-                                                <span class="counter-days"></span> Days
-                                            </div>
+                            <div class="counter-class" data-date="2021-11-03 00:00:01">
+                            <!-- <div class="counter-class" data-date="2021-9-26 23:59:59"> -->
+                                <div class="item-list">
+                                    <div class="counter-item">
+                                        <div class="item">
+                                            <span class="counter-days"></span> Days
                                         </div>
-                                        <div class="counter-item">
-                                            <div class="item">
-                                                <span class="counter-hours"></span> Hours
-                                            </div>
+                                    </div>
+                                    <div class="counter-item">
+                                        <div class="item">
+                                            <span class="counter-hours"></span> Hours
                                         </div>
-                                        <div class="counter-item">
-                                            <div class="item">
-                                                <span class="counter-minutes"></span> Minutes
-                                            </div>
+                                    </div>
+                                    <div class="counter-item">
+                                        <div class="item">
+                                            <span class="counter-minutes"></span> Minutes
                                         </div>
-                                        <div class="counter-item">
-                                            <div class="item">
-                                                <span class="counter-seconds"></span> Seconds
-                                            </div>
+                                    </div>
+                                    <div class="counter-item">
+                                        <div class="item">
+                                            <span class="counter-seconds"></span> Seconds
                                         </div>
                                     </div>
                                 </div>
