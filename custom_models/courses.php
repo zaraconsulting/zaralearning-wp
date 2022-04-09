@@ -10,7 +10,35 @@
                 'post_type' => 'course'
             ) );
 
-            return $courses->posts;
+            $results = array();
+            while($courses->have_posts()) {
+                $courses->the_post();
+                $c = $courses->current_post;
+                // $data = array(
+                //     // 'id' => get_the_ID(),
+                //     'title' => get_the_title(),
+                //     // 'permalink' => get_the_permalink(),
+                //     // 'date_created' => get_the_date(),
+                //     // 'date_updated' => $course['post_updated'],
+                //     // 'title' => get_the_title(),
+                //     // 'title' => get_the_title(),
+                //     // 'title' => get_the_title(),
+                //     // 'title' => get_the_title(),
+                // );
+                array_push($results, array(
+                    'id' => get_the_ID(),
+                    'title' => get_the_title(),
+                    'permalink' => get_the_permalink(),
+                    'date_created' => get_the_date(),
+                    'date_updated' => $c['post_modified'],
+                    // 'title' => get_the_title(),
+                    // 'title' => get_the_title(),
+                    // 'title' => get_the_title(),
+                    // 'title' => get_the_title(),
+                ));
+            }
+            return $results;
+            // return $courses->posts;
         }
 
         register_rest_route( 'app/v1', 'courses', array(
@@ -34,6 +62,3 @@
         ) );
     };
     add_action( 'rest_api_init', 'course_rest' );
-
-
-?>

@@ -65,8 +65,16 @@ function load_static_files()
     ) );
 
 }
-
 add_action( 'wp_enqueue_scripts', 'load_static_files' );
+
+function course_custom_rest() {
+    register_rest_field('course', 'courseVideoCount', array(
+        'get_callback' => function() {
+            return 'hello';
+        }
+    ));
+}
+add_action('rest_api_init', 'course_custom_rest');
 
 function extra_features()
 {
@@ -162,3 +170,4 @@ function loginCSS()
 }
 
 add_action( 'login_enqueue_scripts', 'loginCSS' );
+

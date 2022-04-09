@@ -122,9 +122,10 @@
     ============================================= -->
     <div class="maps-area">
         <div class="google-maps">
-            <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyChat3AchgomQNOFXPskbRveENxTxWUfEA&q=Dallas+TX&zoom=15"></iframe>
+            <iframe loading="lazy" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Dallas,%20TX+(Zara%20Consulting)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
         </div>
     </div>
     <!-- End Google Maps -->
 
 <?php get_footer(); ?>
+

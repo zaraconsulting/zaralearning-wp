@@ -143,9 +143,12 @@
                             {
                                 // print_r( get_field( 'curriculum_course_parent', $v ) );
                                 $curriculum_course_parent = get_field( 'curriculum_course_parent', $v );
+                                // print_r( $v );
                                 // print_r( $curriculum_course_parent );
                                 foreach( $curriculum_course_parent as $ccp )
                                 {
+                                    // print_r( $curriculum_course_parent );
+                                    // break;
                                     // print_r( $ccp->ID );
                                     if( $ccp->ID == $post->ID )
                                     {
@@ -192,7 +195,7 @@
                                                         else
                                                         {
                                                             ?>
-                                                                <li><i class="fas fa-clock"></i> <?php echo $courseDuration; ?> Hour<?php echo ( $courseDuration > 1 ) ? 's': ''; ?></li>
+                                                                <li><i class="fas fa-clock"></i> <?php echo $courseDuration; ?> Hour<?php echo ( $courseDuration != 1 ) ? 's': ''; ?></li>
                                                             <?php
                                                         }
 
@@ -200,7 +203,7 @@
                                                     <!-- Course Duration -->
 
                                                     <!-- Course Video Count -->
-                                                    <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?></li>
+                                                    <li><i class="fas fa-list-ul"></i> <?php echo $courseVideoCount; ?> Video<?php echo ( $courseVideoCount != 1 ) ? 's': ''; ?></li>
                                                     <!-- Course Video Count -->
                                                 </ul>
                                             </div>
