@@ -27,14 +27,14 @@
 
 </head>
 
-<body>
+<body class="<?php echo is_page( array( 'login', 'register' ) ) ? 'bg-gradient' : '' ; ?>">
 
     <!-- Preloader Start -->
     <?php
-        if( is_front_page() )
+        if( !is_page( array( 'register', 'login' ) ) )
         {
             ?>
-                <!-- <div class="se-pre-con"></div> -->
+                <div class="se-pre-con"></div>
             <?php
         }
     ?>
@@ -45,6 +45,9 @@
         if( is_front_page(  ) )
         {
             get_template_part( '/includes/header', 'home' );
+        }
+        else if( is_page( array( 'login', 'register' ) ) ) {
+            null;
         }
         else {
             get_template_part( '/includes/header', 'page' );

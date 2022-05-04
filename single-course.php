@@ -1,6 +1,7 @@
 <?php get_header( ); 
 
     $relatedInstructor = get_field( 'related_instructors' )[0];
+    $relatedCourses = get_field( 'related_courses' );
     $courseVideo = get_field( 'course_video' );
     $course_category = get_the_terms( $post, 'course_categories' )[0];
     $curriculum = get_field( 'related_curriculum', $post );
@@ -440,7 +441,7 @@
                         <h4>Related Courses</h4>
                         <div class="related-courses-items">
                             <?php 
-                                $relatedCourses = get_field( 'instructor_related_courses' );
+                                // print_r( $relatedCourses );
                                 if( $relatedCourses )
                                 {
                                     foreach( $relatedCourses as $course )

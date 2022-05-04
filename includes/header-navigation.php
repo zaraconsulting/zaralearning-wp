@@ -19,8 +19,9 @@
         else
         {
             ?>
-                <li class="small-screen-link"><a href="<?php echo wp_login_url(); ?>">Login</a></li>  
-                <li class="small-screen-link"><a href="<?php echo wp_registration_url(); ?>">Register</a></li>  
+                <li class="small-screen-link"><a href="<?php echo site_url( 'login' ); ?>">Login</a></li>  
+                <li class="small-screen-link"><a href="<?php echo site_url( 'register' ); ?>">Register</a></li>  
+                <!-- <li class="small-screen-link"><a href="<?php echo wp_registration_url(); ?>">Register</a></li>   -->
             <?php
         }
     ?>

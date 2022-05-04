@@ -64,3 +64,7 @@ form .alert-notification {
     color: #000;
     text-decoration: unset;
 }
+
+.highlighted-link {
+    color: #FF1949 !important;
+}

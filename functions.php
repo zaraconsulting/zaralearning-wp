@@ -171,3 +171,21 @@ function loginCSS()
 
 add_action( 'login_enqueue_scripts', 'loginCSS' );
 
+// Customize logout
+function redirect_after_logout() {
+    $current_user = wp_get_current_user();
+    wp_safe_redirect( site_url( 'login' ) );
+    exit();
+}
+add_action( 'wp_logout', 'redirect_after_logout' );
+
+// function redirect_wp_admin() {
+//     global $pagenow;
+
+//     if ( $pagenow == 'wp-login.php' && $_GET['action'] != "logout" ) {
+//         wp_redirect( site_url( 'login' ) );
+//         exit();
+//     }
+    
+// };
+// add_action('init', 'redirect_wp_admin');

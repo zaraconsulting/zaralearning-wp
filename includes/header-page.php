@@ -8,7 +8,7 @@
                 <div class="item-flex">
                     <ul class="list" style="margin-bottom: 0;">
                         <li>
-                            <i class="fas fa-phone"></i> Have any questions? +1 (469) 730-6696
+                            <i class="fas fa-phone"></i> Have any questions? <a class="highlighted-link" href="<? echo site_url( 'contact' ) ?>">Contact Us</a>
                         </li>
                         <!-- <li>
                             <i class="fas fa-bullhorn"></i> <a href="#">Become an Instructor</a>

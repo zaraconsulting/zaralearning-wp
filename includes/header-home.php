@@ -6,12 +6,12 @@
             <div class="col-lg-4 left-info">
                 <ul class="list" style="margin-bottom: 0;">
                     <li>
-                        Have any questions? +1 (469) 730-6696
+                        Have any questions? <a href="<? echo site_url( 'contact' ) ?>">Contact Us</a>
                     </li>
                 </ul>
             </div>
             <div class="col-lg-4 logo text-center">
-                <a href="<?php echo site_url( ); ?>"><img src="<?php echo get_theme_file_uri( '/assets/img/logo-dark.png' ); ?>" alt="Zara Learning"></a>
+                <a href="<?php echo site_url( ); ?>"><img src="<?php echo get_theme_file_uri( '/assets/img/logo-dark.png' ); ?>" title="<?php echo bloginfo( 'name' ); ?>" alt="<?php echo bloginfo( 'name' ); ?>"></a>
             </div>
             <div class="col-lg-4 right-info">
                  <?php get_template_part( '/includes/header', 'social-media' ); ?>

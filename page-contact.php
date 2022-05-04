@@ -57,7 +57,7 @@
                                     <i class="fas fa-envelope-open"></i>
                                 </div>
                                 <div class="info">
-                                    <h5>Send a Mail</h5>
+                                    <h5>Email Us</h5>
                                     <p>
                                         support@zaralearning.org
                                     </p>

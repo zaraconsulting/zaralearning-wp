@@ -27,8 +27,9 @@
             else
             { 
                 ?>
-                    <a href="<?php echo wp_registration_url(); ?>">Register</a>
-                    <a href="<?php echo wp_login_url(); ?>"><i class="fa fa-sign-in-alt"></i>Login</a>
+                    <!-- <a href="<?php echo wp_registration_url(); ?>">Register</a> -->
+                    <a href="<?php echo  site_url( 'register' ); ?>"><i class="fa fa-sign-in-alt"></i>Register</a>
+                    <a href="<?php echo  site_url( 'login' ); ?>"><i class="fa fa-sign-in-alt"></i>Login</a>
                 <?php 
             }
 
